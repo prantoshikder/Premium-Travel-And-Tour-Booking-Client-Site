@@ -220,3 +220,10 @@ export const footerColumns = [
 export const heroImage = img("1613395877344-13d4a8e0d49e", 1200, 900);
 export const whyImage = img("1502920917128-1aa500764cbd", 700, 800);
 export const airplaneImage = img("1436491865332-7a61a109cc05", 900, 500);
+export const authImage = img("1507525428034-b723cf961d3e", 900, 1300);
+
+export const authHighlights = [
+  "Exclusive member-only deals on flights & hotels",
+  "Save trips and manage bookings in one place",
+  "24/7 priority travel support worldwide",
+];

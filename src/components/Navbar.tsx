@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { navLinks } from "@/lib/data";
 import { PlaneIcon, GlobeIcon, ChevronDownIcon } from "./Icons";
 import Drawer from "./Drawer";
@@ -66,9 +67,18 @@ export default function Navbar() {
             English / USD
             <ChevronDownIcon className="h-3.5 w-3.5" />
           </button>
-          <button className="rounded-full bg-gold-500 px-6 py-2.5 text-sm font-semibold text-navy-800 shadow-md transition hover:bg-gold-400 hover:shadow-lg">
+          <Link
+            href="/login"
+            className="text-sm font-medium text-white/90 transition hover:text-gold-400"
+          >
             Sign In
-          </button>
+          </Link>
+          <Link
+            href="/register"
+            className="rounded-full bg-gold-500 px-6 py-2.5 text-sm font-semibold text-navy-800 shadow-md transition hover:bg-gold-400 hover:shadow-lg"
+          >
+            Sign Up
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -160,9 +170,22 @@ export default function Navbar() {
             <GlobeIcon className="h-4 w-4" />
             English / USD
           </button>
-          <button className="w-full rounded-full bg-gold-500 px-6 py-3 text-sm font-semibold text-navy-800 transition hover:bg-gold-400">
-            Sign In
-          </button>
+          <div className="grid grid-cols-2 gap-3">
+            <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="rounded-full border border-white/15 px-4 py-3 text-center text-sm font-semibold text-white/90 transition hover:bg-white/10"
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/register"
+              onClick={() => setOpen(false)}
+              className="rounded-full bg-gold-500 px-4 py-3 text-center text-sm font-semibold text-navy-800 transition hover:bg-gold-400"
+            >
+              Sign Up
+            </Link>
+          </div>
         </div>
       </Drawer>
     </header>
