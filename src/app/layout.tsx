@@ -20,7 +20,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${jakarta.variable} h-full`}>
-      <body suppressContentEditableWarning className="min-h-full antialiased">
+      <body
+        suppressContentEditableWarning
+        suppressHydrationWarning
+        className="min-h-full antialiased"
+      >
         {children}
       </body>
     </html>

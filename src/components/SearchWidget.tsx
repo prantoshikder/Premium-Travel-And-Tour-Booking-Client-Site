@@ -40,7 +40,7 @@ export default function SearchWidget() {
   return (
     <div className="mx-auto w-full max-w-5xl rounded-3xl bg-white p-3 shadow-[0_30px_80px_-30px_rgba(10,24,54,0.5)] sm:p-4">
       {/* Tabs */}
-      <div className="flex flex-wrap items-center gap-1 border-b border-navy-50 px-1 pb-3">
+      <div className="no-scrollbar flex items-center gap-1 overflow-x-auto border-b border-navy-50 px-1 pb-3">
         {tabs.map((t) => {
           const Ico = t.icon;
           const isActive = active === t.id;
@@ -48,7 +48,7 @@ export default function SearchWidget() {
             <button
               key={t.id}
               onClick={() => setActive(t.id)}
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
+              className={`flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-sm font-semibold transition sm:px-4 ${
                 isActive
                   ? "bg-navy-500 text-white shadow"
                   : "text-muted hover:bg-navy-50 hover:text-navy-600"

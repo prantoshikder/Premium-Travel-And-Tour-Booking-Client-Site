@@ -16,9 +16,9 @@ export default function Footer() {
   return (
     <footer id="contact" className="mt-12 bg-navy-900 text-white">
       <div className="container-x py-14">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.6fr]">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.6fr] lg:gap-10">
           {/* Brand */}
-          <div>
+          <div className="col-span-2 sm:col-span-4 lg:col-span-1">
             <div className="flex items-center gap-2">
               <span className="grid h-9 w-9 place-items-center rounded-lg bg-gold-500 text-navy-800">
                 <PlaneIcon className="h-5 w-5" strokeWidth={2} />
@@ -75,7 +75,7 @@ export default function Footer() {
           ))}
 
           {/* Newsletter */}
-          <div>
+          <div className="col-span-2 sm:col-span-4 lg:col-span-1">
             <h4 className="text-sm font-bold text-white">Newsletter</h4>
             <p className="mt-4 text-sm text-white/60">
               Subscribe to get exclusive travel deals and updates.

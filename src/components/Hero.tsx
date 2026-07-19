@@ -1,5 +1,5 @@
+import { heroFeatures, heroImage } from "@/lib/data";
 import Image from "next/image";
-import { heroImage, heroFeatures } from "@/lib/data";
 import { Icon } from "./Icons";
 import SearchWidget from "./SearchWidget";
 
@@ -16,12 +16,12 @@ export default function Hero() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900/85 via-navy-800/55 to-navy-800/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-900/70 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-b from-navy-900/85 via-navy-800/55 to-navy-800/20" />
+        <div className="absolute inset-0 bg-linear-to-r from-navy-900/70 to-transparent" />
 
-        <div className="container-x relative pt-36 pb-44 sm:pt-44 sm:pb-52">
+        <div className="container-x relative pt-32 pb-44 sm:pt-44 sm:pb-52">
           <div className="max-w-xl animate-fade-up">
-            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl">
+            <h1 className="text-[2rem] font-extrabold leading-[1.08] tracking-tight text-white min-[400px]:text-4xl sm:text-6xl">
               Explore More,
               <br />
               <span className="text-gold-400">Travel</span> Better
