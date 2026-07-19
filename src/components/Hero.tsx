@@ -1,5 +1,6 @@
 import { heroFeatures, heroImage } from "@/lib/data";
 import Image from "next/image";
+import Link from "next/link";
 import { Icon } from "./Icons";
 import SearchWidget from "./SearchWidget";
 
@@ -30,12 +31,12 @@ export default function Hero() {
               Discover amazing places with exclusive deals on flights, hotels,
               and tour packages.
             </p>
-            <a
-              href="#tours"
+            <Link
+              href="/tours"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold-500 px-8 py-3.5 text-sm font-bold text-navy-800 shadow-lg transition hover:bg-gold-400 hover:shadow-xl"
             >
               Explore Now
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/lib/data";
 import { PlaneIcon, GlobeIcon, ChevronDownIcon, LogoutIcon } from "./Icons";
 import Drawer from "./Drawer";
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -38,30 +40,32 @@ export default function Navbar() {
     >
       <nav className="container-x flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 text-white">
+        <Link href="/" className="flex items-center gap-2 text-white">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-gold-500 text-navy-800">
             <PlaneIcon className="h-5 w-5" strokeWidth={2} />
           </span>
           <span className="text-xl font-extrabold tracking-tight">
             travel<span className="text-gold-400">perk</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                className="group flex items-center gap-1 text-sm font-medium text-white/90 transition hover:text-gold-400"
-              >
-                {link.label}
-                {link.hasDropdown && (
-                  <ChevronDownIcon className="h-3.5 w-3.5 transition group-hover:translate-y-0.5" />
-                )}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className={`text-sm font-medium transition hover:text-gold-400 ${
+                    active ? "text-gold-400" : "text-white/90"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Right controls */}
@@ -157,20 +161,23 @@ export default function Navbar() {
         {/* Links */}
         <nav className="flex-1 overflow-y-auto p-4">
           <ul className="flex flex-col gap-1">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-gold-400"
-                >
-                  {link.label}
-                  {link.hasDropdown && (
-                    <ChevronDownIcon className="h-3.5 w-3.5 -rotate-90 text-white/50" />
-                  )}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const active = pathname === link.href;
+              return (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-white/10 hover:text-gold-400 ${
+                      active ? "bg-white/10 text-gold-400" : "text-white/90"
+                    }`}
+                  >
+                    {link.label}
+                    <ChevronDownIcon className="h-3.5 w-3.5 -rotate-90 text-white/40" />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

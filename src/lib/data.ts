@@ -2,13 +2,13 @@ const img = (id: string, w = 800, h = 600) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
 
 export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Tours", href: "#tours", hasDropdown: true },
-  { label: "Hotels", href: "#hotels" },
-  { label: "Flights", href: "#flights" },
-  { label: "Activities", href: "#activities" },
-  { label: "Visa", href: "#visa" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Tours", href: "/tours" },
+  { label: "Hotels", href: "/hotels" },
+  { label: "Flights", href: "/flights" },
+  { label: "Activities", href: "/activities" },
+  { label: "Visa", href: "/visa" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const heroFeatures = [
@@ -290,4 +290,132 @@ export const authHighlights = [
   "Exclusive member-only deals on flights & hotels",
   "Save trips and manage bookings in one place",
   "24/7 priority travel support worldwide",
+];
+
+/* ------------------------------------------------------------------ */
+/* Listing pages                                                       */
+/* ------------------------------------------------------------------ */
+
+export const tourCategoryNames = [
+  "Beach",
+  "Adventure",
+  "Cultural",
+  "Family",
+  "Luxury",
+  "City",
+] as const;
+export type TourCategory = (typeof tourCategoryNames)[number];
+
+export const tourList: {
+  id: string;
+  title: string;
+  location: string;
+  image: string;
+  duration: string;
+  category: TourCategory;
+  rating: number;
+  reviews: number;
+  price: number;
+  badge?: string;
+}[] = [
+  { id: "t1", title: "Santorini Sunset Cruise", location: "Santorini, Greece", image: img("1570077188670-e3a8d69ac5ff"), duration: "6 Days", category: "Beach", rating: 4.9, reviews: 328, price: 1899, badge: "Bestseller" },
+  { id: "t2", title: "Bali Island Adventure", location: "Bali, Indonesia", image: img("1537996194471-e657df975ab4"), duration: "7 Days", category: "Beach", rating: 4.8, reviews: 512, price: 1299 },
+  { id: "t3", title: "Swiss Alps Expedition", location: "Interlaken, Switzerland", image: img("1531366936337-7c912a4589a7"), duration: "8 Days", category: "Adventure", rating: 4.9, reviews: 274, price: 2100, badge: "Top rated" },
+  { id: "t4", title: "Kyoto Heritage Walk", location: "Kyoto, Japan", image: img("1545569341-9eb8b30979d9"), duration: "5 Days", category: "Cultural", rating: 4.7, reviews: 198, price: 1450 },
+  { id: "t5", title: "Dubai Luxury Getaway", location: "Dubai, UAE", image: img("1512453979798-5ea266f8880c"), duration: "5 Days", category: "Luxury", rating: 4.8, reviews: 421, price: 1750 },
+  { id: "t6", title: "Thailand Family Fun", location: "Phuket, Thailand", image: img("1552465011-b4e21bf6e79a"), duration: "6 Days", category: "Family", rating: 4.6, reviews: 356, price: 999 },
+  { id: "t7", title: "Canadian Rockies Trek", location: "Banff, Canada", image: img("1609825488888-3a766db05542"), duration: "9 Days", category: "Adventure", rating: 4.9, reviews: 143, price: 2350 },
+  { id: "t8", title: "Singapore City Explorer", location: "Singapore", image: img("1525625293386-3f8f99389edd"), duration: "4 Days", category: "City", rating: 4.7, reviews: 289, price: 899 },
+  { id: "t9", title: "Maldives Overwater Retreat", location: "Malé, Maldives", image: img("1514282401047-d79a71a590e8"), duration: "5 Days", category: "Luxury", rating: 5.0, reviews: 402, price: 2650, badge: "Bestseller" },
+];
+
+export const hotelList: {
+  id: string;
+  name: string;
+  location: string;
+  image: string;
+  rating: number;
+  reviews: number;
+  pricePerNight: number;
+  amenities: string[];
+  tag?: string;
+}[] = [
+  { id: "h1", name: "Azure Cliff Resort", location: "Santorini, Greece", image: img("1570077188670-e3a8d69ac5ff"), rating: 4.9, reviews: 1204, pricePerNight: 320, amenities: ["Free WiFi", "Infinity Pool", "Breakfast", "Sea View"], tag: "Luxury" },
+  { id: "h2", name: "Bali Jungle Villas", location: "Ubud, Bali", image: img("1537996194471-e657df975ab4"), rating: 4.8, reviews: 986, pricePerNight: 180, amenities: ["Free WiFi", "Private Pool", "Spa", "Breakfast"] },
+  { id: "h3", name: "Alpine Grand Chalet", location: "Interlaken, Switzerland", image: img("1531366936337-7c912a4589a7"), rating: 4.7, reviews: 742, pricePerNight: 260, amenities: ["Mountain View", "Fireplace", "Free WiFi", "Parking"] },
+  { id: "h4", name: "Palm Desert Palace", location: "Dubai, UAE", image: img("1512453979798-5ea266f8880c"), rating: 4.9, reviews: 1533, pricePerNight: 410, amenities: ["Rooftop Pool", "Gym", "Free WiFi", "Airport Shuttle"], tag: "Popular" },
+  { id: "h5", name: "Kyoto Zen Ryokan", location: "Kyoto, Japan", image: img("1545569341-9eb8b30979d9"), rating: 4.8, reviews: 634, pricePerNight: 220, amenities: ["Onsen", "Garden", "Breakfast", "Free WiFi"] },
+  { id: "h6", name: "Marina Bay Suites", location: "Singapore", image: img("1525625293386-3f8f99389edd"), rating: 4.6, reviews: 878, pricePerNight: 290, amenities: ["City View", "Pool", "Gym", "Free WiFi"] },
+];
+
+export const flightList: {
+  id: string;
+  airline: string;
+  logo: string; // emoji
+  from: string;
+  fromCity: string;
+  to: string;
+  toCity: string;
+  depart: string;
+  arrive: string;
+  duration: string;
+  stops: string;
+  price: number;
+}[] = [
+  { id: "f1", airline: "SkyJet Airways", logo: "✈️", from: "NYC", fromCity: "New York", to: "PAR", toCity: "Paris", depart: "08:30", arrive: "21:45", duration: "7h 15m", stops: "Non-stop", price: 540 },
+  { id: "f2", airline: "AeroGlobe", logo: "🛩️", from: "NYC", fromCity: "New York", to: "PAR", toCity: "Paris", depart: "13:10", arrive: "05:30", duration: "9h 20m", stops: "1 Stop", price: 420 },
+  { id: "f3", airline: "Blue Horizon", logo: "🛫", from: "NYC", fromCity: "New York", to: "PAR", toCity: "Paris", depart: "18:45", arrive: "08:05", duration: "7h 20m", stops: "Non-stop", price: 610 },
+  { id: "f4", airline: "Nomad Air", logo: "✈️", from: "NYC", fromCity: "New York", to: "PAR", toCity: "Paris", depart: "22:00", arrive: "13:40", duration: "10h 40m", stops: "1 Stop", price: 385 },
+  { id: "f5", airline: "Emerald Fly", logo: "🛬", from: "NYC", fromCity: "New York", to: "PAR", toCity: "Paris", depart: "06:15", arrive: "19:00", duration: "6h 45m", stops: "Non-stop", price: 720 },
+];
+
+export const activityList: {
+  id: string;
+  title: string;
+  location: string;
+  image: string;
+  duration: string;
+  category: TourCategory;
+  rating: number;
+  price: number;
+}[] = [
+  { id: "a1", title: "Sunset Catamaran Sail", location: "Santorini, Greece", image: img("1570077188670-e3a8d69ac5ff"), duration: "3 hours", category: "Beach", rating: 4.9, price: 89 },
+  { id: "a2", title: "Ubud Rice Terrace Cycling", location: "Bali, Indonesia", image: img("1537996194471-e657df975ab4"), duration: "5 hours", category: "Adventure", rating: 4.7, price: 45 },
+  { id: "a3", title: "Alpine Paragliding", location: "Interlaken, Switzerland", image: img("1531366936337-7c912a4589a7"), duration: "2 hours", category: "Adventure", rating: 4.9, price: 160 },
+  { id: "a4", title: "Tea Ceremony Experience", location: "Kyoto, Japan", image: img("1545569341-9eb8b30979d9"), duration: "1.5 hours", category: "Cultural", rating: 4.8, price: 55 },
+  { id: "a5", title: "Desert Safari & BBQ", location: "Dubai, UAE", image: img("1512453979798-5ea266f8880c"), duration: "6 hours", category: "Family", rating: 4.6, price: 75 },
+  { id: "a6", title: "City Lights Night Tour", location: "Singapore", image: img("1525625293386-3f8f99389edd"), duration: "3 hours", category: "City", rating: 4.7, price: 60 },
+  { id: "a7", title: "Phi Phi Island Hopping", location: "Phuket, Thailand", image: img("1552465011-b4e21bf6e79a"), duration: "8 hours", category: "Beach", rating: 4.8, price: 95 },
+  { id: "a8", title: "Rockies Helicopter Ride", location: "Banff, Canada", image: img("1609825488888-3a766db05542"), duration: "1 hour", category: "Luxury", rating: 5.0, price: 240 },
+];
+
+export const visaSteps = [
+  { title: "Choose Destination", text: "Pick the country you're travelling to and the visa type you need.", icon: "compass" },
+  { title: "Submit Documents", text: "Upload your passport and required documents securely online.", icon: "passport" },
+  { title: "We Process It", text: "Our experts review and submit your application to the embassy.", icon: "shield" },
+  { title: "Get Approved", text: "Receive your approved visa straight to your inbox on time.", icon: "ticket" },
+];
+
+export const visaCountries: {
+  country: string;
+  flag: string;
+  processing: string;
+  price: number;
+  type: string;
+}[] = [
+  { country: "United States", flag: "🇺🇸", processing: "10–15 days", price: 160, type: "Tourist B1/B2" },
+  { country: "United Kingdom", flag: "🇬🇧", processing: "15–20 days", price: 140, type: "Standard Visitor" },
+  { country: "Canada", flag: "🇨🇦", processing: "12–18 days", price: 130, type: "Visitor Visa" },
+  { country: "Schengen (EU)", flag: "🇪🇺", processing: "10–14 days", price: 120, type: "Tourist Schengen" },
+  { country: "Australia", flag: "🇦🇺", processing: "14–20 days", price: 150, type: "Visitor 600" },
+  { country: "United Arab Emirates", flag: "🇦🇪", processing: "3–5 days", price: 100, type: "Tourist 30 days" },
+  { country: "Japan", flag: "🇯🇵", processing: "5–8 days", price: 90, type: "Tourist Visa" },
+  { country: "Singapore", flag: "🇸🇬", processing: "3–5 days", price: 80, type: "Tourist Visa" },
+];
+
+export const contactChannels = [
+  { label: "Visit us", value: "123 Travel Ave, New York, NY 10001", icon: "pin" },
+  { label: "Call us", value: "+1 (555) 000-1234", icon: "headset" },
+  { label: "Email us", value: "hello@travelperk.com", icon: "ticket" },
+  { label: "Working hours", value: "Mon – Sat, 9:00 AM – 8:00 PM", icon: "clock" },
 ];

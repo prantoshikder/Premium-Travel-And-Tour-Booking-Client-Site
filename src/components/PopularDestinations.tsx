@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { destinations } from "@/lib/data";
 import { PinIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
@@ -41,12 +42,12 @@ export default function PopularDestinations() {
       </div>
 
       <div className="mt-10 flex justify-center">
-        <a
-          href="#"
+        <Link
+          href="/tours"
           className="rounded-full border border-navy-200 bg-white px-7 py-3 text-sm font-semibold text-navy-700 transition hover:border-navy-500 hover:bg-navy-500 hover:text-white"
         >
           View All Destinations
-        </a>
+        </Link>
       </div>
     </section>
   );
