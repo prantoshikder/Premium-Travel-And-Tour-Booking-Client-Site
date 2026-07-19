@@ -3,12 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { navLinks } from "@/lib/data";
-import { PlaneIcon, GlobeIcon, ChevronDownIcon } from "./Icons";
+import { PlaneIcon, GlobeIcon, ChevronDownIcon, LogoutIcon } from "./Icons";
 import Drawer from "./Drawer";
+import { useAuth } from "@/lib/auth";
+import UserMenu from "./auth/UserMenu";
+import Avatar from "./auth/Avatar";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -67,18 +71,24 @@ export default function Navbar() {
             English / USD
             <ChevronDownIcon className="h-3.5 w-3.5" />
           </button>
-          <Link
-            href="/login"
-            className="text-sm font-medium text-white/90 transition hover:text-gold-400"
-          >
-            Sign In
-          </Link>
-          <Link
-            href="/register"
-            className="rounded-full bg-gold-500 px-6 py-2.5 text-sm font-semibold text-navy-800 shadow-md transition hover:bg-gold-400 hover:shadow-lg"
-          >
-            Sign Up
-          </Link>
+          {user ? (
+            <UserMenu dark />
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="text-sm font-medium text-white/90 transition hover:text-gold-400"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                className="rounded-full bg-gold-500 px-6 py-2.5 text-sm font-semibold text-navy-800 shadow-md transition hover:bg-gold-400 hover:shadow-lg"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -170,22 +180,44 @@ export default function Navbar() {
             <GlobeIcon className="h-4 w-4" />
             English / USD
           </button>
-          <div className="grid grid-cols-2 gap-3">
-            <Link
-              href="/login"
-              onClick={() => setOpen(false)}
-              className="rounded-full border border-white/15 px-4 py-3 text-center text-sm font-semibold text-white/90 transition hover:bg-white/10"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/register"
-              onClick={() => setOpen(false)}
-              className="rounded-full bg-gold-500 px-4 py-3 text-center text-sm font-semibold text-navy-800 transition hover:bg-gold-400"
-            >
-              Sign Up
-            </Link>
-          </div>
+          {user ? (
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-3">
+                <Avatar user={user} className="h-10 w-10 text-xs" />
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-bold text-white">{user.name}</p>
+                  <p className="truncate text-xs text-white/60">{user.contact}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  logout();
+                }}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+              >
+                <LogoutIcon className="h-4 w-4" />
+                Log out
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-3">
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="rounded-full border border-white/15 px-4 py-3 text-center text-sm font-semibold text-white/90 transition hover:bg-white/10"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                onClick={() => setOpen(false)}
+                className="rounded-full bg-gold-500 px-4 py-3 text-center text-sm font-semibold text-navy-800 transition hover:bg-gold-400"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
       </Drawer>
     </header>

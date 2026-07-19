@@ -81,6 +81,20 @@ export function passwordStrength(value: string): Strength {
   return { score: s, label: labels[s] };
 }
 
+/** Derive a friendly display name when we only have an email/phone (e.g. login). */
+export function nameFromIdentifier(value: string, mode: "email" | "phone"): string {
+  if (mode === "email") {
+    const local = value.split("@")[0] || "Traveler";
+    const cleaned = local.replace(/[._-]+/g, " ").trim();
+    return cleaned
+      .split(" ")
+      .filter(Boolean)
+      .map((w) => w[0].toUpperCase() + w.slice(1))
+      .join(" ");
+  }
+  return "Traveler";
+}
+
 /** Mask an email/phone for confirmation messages, e.g. jo•••@mail.com. */
 export function maskIdentifier(value: string, mode: "email" | "phone"): string {
   const v = value.trim();

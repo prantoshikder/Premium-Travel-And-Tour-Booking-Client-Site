@@ -222,6 +222,70 @@ export const whyImage = img("1502920917128-1aa500764cbd", 700, 800);
 export const airplaneImage = img("1436491865332-7a61a109cc05", 900, 500);
 export const authImage = img("1507525428034-b723cf961d3e", 900, 1300);
 
+export type BookingStatus = "upcoming" | "completed" | "cancelled";
+
+export const bookings: {
+  id: string;
+  title: string;
+  location: string;
+  image: string;
+  dates: string;
+  guests: number;
+  price: number;
+  status: BookingStatus;
+}[] = [
+  {
+    id: "TP-2048",
+    title: "Santorini Escape",
+    location: "Santorini, Greece",
+    image: img("1570077188670-e3a8d69ac5ff"),
+    dates: "24 – 31 Aug, 2026",
+    guests: 2,
+    price: 1899,
+    status: "upcoming",
+  },
+  {
+    id: "TP-1994",
+    title: "Bali Beach Retreat",
+    location: "Bali, Indonesia",
+    image: img("1537996194471-e657df975ab4"),
+    dates: "12 – 18 Sep, 2026",
+    guests: 2,
+    price: 1299,
+    status: "upcoming",
+  },
+  {
+    id: "TP-1820",
+    title: "Kyoto Cultural Tour",
+    location: "Kyoto, Japan",
+    image: img("1545569341-9eb8b30979d9"),
+    dates: "03 – 09 Mar, 2026",
+    guests: 1,
+    price: 1450,
+    status: "completed",
+  },
+  {
+    id: "TP-1710",
+    title: "Swiss Alps Adventure",
+    location: "Interlaken, Switzerland",
+    image: img("1531366936337-7c912a4589a7"),
+    dates: "15 – 21 Jan, 2026",
+    guests: 3,
+    price: 2100,
+    status: "completed",
+  },
+  {
+    id: "TP-1655",
+    title: "Dubai City Break",
+    location: "Dubai, UAE",
+    image: img("1512453979798-5ea266f8880c"),
+    dates: "08 – 12 Dec, 2025",
+    guests: 2,
+    price: 1150,
+    status: "cancelled",
+  },
+];
+
 export const authHighlights = [
   "Exclusive member-only deals on flights & hotels",
   "Save trips and manage bookings in one place",

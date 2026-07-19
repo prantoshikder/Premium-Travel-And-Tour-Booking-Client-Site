@@ -286,6 +286,16 @@ export function PhoneIcon(props: IconProps) {
   );
 }
 
+export function LogoutIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M15 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2" />
+      <path d="M10 17 5 12l5-5" />
+      <path d="M5 12h11" />
+    </svg>
+  );
+}
+
 export function UserIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
