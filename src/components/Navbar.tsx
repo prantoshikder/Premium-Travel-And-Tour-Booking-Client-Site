@@ -31,7 +31,10 @@ export default function Navbar() {
   }, []);
 
   return (
+    // `data-navbar` lets globals.css give the bar a solid backdrop on pages
+    // that render no dark hero behind it — see the `:has([data-hero])` rule.
     <header
+      data-navbar
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-navy-800/95 backdrop-blur-md shadow-lg py-3"

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import HotelsExplorer from "@/components/site/HotelsExplorer";
-import { authImage } from "@/lib/data";
+import { hotelHeroImage } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Hotels & Stays — TravelPerk",
@@ -16,7 +16,7 @@ export default function HotelsPage() {
         eyebrow="Handpicked Stays"
         title="Hotels & Resorts"
         subtitle="Comfortable, safe and beautiful places to stay — from beachfront resorts to cozy mountain chalets."
-        image={authImage}
+        image={hotelHeroImage}
       />
       <section className="container-x py-12 sm:py-16">
         <HotelsExplorer />

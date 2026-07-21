@@ -1,13 +1,17 @@
 "use client";
 
+import { useAuth } from "@/lib/auth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/lib/auth";
 import Avatar from "../auth/Avatar";
+import { ArrowRightIcon, LogoutIcon, PlaneIcon } from "../Icons";
 import { accountNav } from "./nav";
-import { PlaneIcon, LogoutIcon, ArrowRightIcon } from "../Icons";
 
-export default function AccountShell({ children }: { children: React.ReactNode }) {
+export default function AccountShell({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { user, logout } = useAuth();
   const pathname = usePathname();
 
@@ -43,7 +47,9 @@ export default function AccountShell({ children }: { children: React.ReactNode }
           <div className="flex items-center gap-3 rounded-2xl border border-navy-50 bg-white p-4 shadow-soft">
             <Avatar user={user} className="h-12 w-12 text-sm" />
             <div className="min-w-0">
-              <p className="truncate text-sm font-bold text-navy-800">{user.name}</p>
+              <p className="truncate text-sm font-bold text-navy-800">
+                {user.name}
+              </p>
               <p className="truncate text-xs text-muted">{user.contact}</p>
             </div>
           </div>
@@ -62,7 +68,7 @@ export default function AccountShell({ children }: { children: React.ReactNode }
                       : "text-navy-700 hover:bg-white"
                   }`}
                 >
-                  <Icon className="h-[18px] w-[18px]" />
+                  <Icon className="h-4.5 w-4.5" />
                   <span className="whitespace-nowrap">{label}</span>
                 </Link>
               );
@@ -71,7 +77,7 @@ export default function AccountShell({ children }: { children: React.ReactNode }
               onClick={logout}
               className="flex shrink-0 items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-50 lg:mt-2 lg:border-t lg:border-navy-50"
             >
-              <LogoutIcon className="h-[18px] w-[18px]" />
+              <LogoutIcon className="h-4.5 w-4.5" />
               <span className="whitespace-nowrap">Log out</span>
             </button>
           </nav>

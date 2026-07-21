@@ -104,6 +104,18 @@ body {
   animation: fadeUp 0.7s ease both;
 }
 
+/*
+ * The navbar is white text on a transparent bar — readable only because a dark
+ * hero sits behind it. Pages that render no hero (checkout, …) get a solid bar
+ * instead. Unlayered, so it wins over the `bg-transparent` utility.
+ */
+body:not(:has([data-hero])) [data-navbar] {
+  background-color: color-mix(in srgb, var(--color-navy-800) 95%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 20px -8px rgba(10, 24, 54, 0.45);
+}
+
 ::selection {
   background: var(--color-gold-400);
   color: var(--color-navy-800);

@@ -6,7 +6,7 @@ import SearchWidget from "./SearchWidget";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative">
+    <section id="home" data-hero className="relative">
       {/* Hero visual */}
       <div className="relative overflow-hidden">
         <Image

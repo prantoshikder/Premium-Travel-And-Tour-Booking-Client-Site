@@ -15,7 +15,7 @@ export default function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-navy-800">
+    <section data-hero className="relative overflow-hidden bg-navy-800">
       <Image
         src={image}
         alt=""
@@ -24,7 +24,9 @@ export default function PageHero({
         sizes="100vw"
         className="object-cover opacity-40"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/90 via-navy-800/80 to-navy-900/90" />
+      <div className="absolute inset-0 bg-linear-to-b from-navy-900/90 via-navy-800/80 to-navy-900/90" />
+      {/* Scrim under the transparent navbar — keeps it readable on any photo. */}
+      <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-navy-900/70 to-transparent" />
 
       <div className="container-x relative pt-32 pb-14 sm:pt-40 sm:pb-16">
         {/* Breadcrumb */}
