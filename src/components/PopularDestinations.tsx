@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { destinations } from "@/temp/home";
+import { destinations } from "@/temp/destinations";
 import { PinIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
 
@@ -15,16 +15,16 @@ export default function PopularDestinations() {
 
       <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {destinations.map((d, i) => (
-          <a
-            key={d.name}
-            href="#"
+          <Link
+            key={d.slug}
+            href={`/destinations/${d.slug}`}
             className={`group relative aspect-[3/4] overflow-hidden rounded-2xl shadow-card ${
               i === 4 ? "hidden sm:block" : ""
             }`}
           >
             <Image
               src={d.image}
-              alt={d.name}
+              alt={`${d.name}, ${d.country}`}
               fill
               sizes="(max-width: 640px) 50vw, 20vw"
               className="object-cover transition duration-500 group-hover:scale-110"
@@ -37,13 +37,13 @@ export default function PopularDestinations() {
                 {d.country}
               </p>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 
       <div className="mt-10 flex justify-center">
         <Link
-          href="/tours"
+          href="/destinations"
           className="rounded-full border border-navy-200 bg-white px-7 py-3 text-sm font-semibold text-navy-700 transition hover:border-navy-500 hover:bg-navy-500 hover:text-white"
         >
           View All Destinations

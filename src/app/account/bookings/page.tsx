@@ -1,11 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { bookings, type BookingStatus } from "@/temp/account";
 import PageHeader from "@/components/account/PageHeader";
-import { PinIcon, TicketIcon } from "@/components/Icons";
+import { PinIcon, StarIcon, TicketIcon } from "@/components/Icons";
+import ReviewFormDrawer from "@/components/site/ReviewFormDrawer";
+import { loadReviews, reviewFor, saveReview, type MyReview } from "@/lib/reviews";
+import BookingDrawer, { type BookingMode } from "@/components/site/BookingDrawer";
+import { loadChanges, saveChange, type BookingChanges } from "@/lib/myBookings";
 
 const filters: { key: BookingStatus | "all"; label: string }[] = [
   { key: "all", label: "All" },
@@ -22,7 +26,69 @@ const statusStyles: Record<BookingStatus, string> = {
 
 export default function BookingsPage() {
   const [filter, setFilter] = useState<BookingStatus | "all">("all");
-  const list = bookings.filter((b) => filter === "all" || b.status === filter);
+  const [myReviews, setMyReviews] = useState<MyReview[]>([]);
+  // `reviewing` keeps the drawer mounted through its slide-out; `reviewOpen`
+  // drives the animation. Mounting a drawer already-open skips the transition.
+  const [reviewing, setReviewing] = useState<(typeof bookings)[number] | null>(
+    null
+  );
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [changes, setChanges] = useState<BookingChanges>({});
+  const [viewing, setViewing] = useState<(typeof bookings)[number] | null>(null);
+  const [viewOpen, setViewOpen] = useState(false);
+  const [mode, setMode] = useState<BookingMode>("details");
+
+  // A traveller's own cancellations and change requests override the defaults.
+  const merged = bookings.map((b) => ({
+    ...b,
+    status: changes[b.id]?.status ?? b.status,
+  }));
+  const list = merged.filter((b) => filter === "all" || b.status === filter);
+
+  // Reviews live in localStorage until there's a backend.
+  useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setMyReviews(loadReviews());
+    setChanges(loadChanges());
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, []);
+
+  const openBooking = (
+    booking: (typeof bookings)[number],
+    next: BookingMode
+  ) => {
+    setViewing(booking);
+    setMode(next);
+    setViewOpen(true);
+  };
+
+  const closeBooking = () => {
+    setViewOpen(false);
+    // Unmount only once the panel has slid away.
+    window.setTimeout(() => setViewing(null), 320);
+  };
+
+  const handleRequestChange = (id: string, date: string, guests: number) =>
+    setChanges(saveChange(id, { requestedDate: date || undefined, requestedGuests: guests }));
+
+  const handleCancel = (id: string) =>
+    setChanges(saveChange(id, { status: "cancelled" }));
+
+  const openReview = (booking: (typeof bookings)[number]) => {
+    setReviewing(booking);
+    setReviewOpen(true);
+  };
+
+  const closeReview = () => {
+    setReviewOpen(false);
+    // Unmount only once the panel has slid away (Drawer animates for 300ms).
+    window.setTimeout(() => setReviewing(null), 320);
+  };
+
+  const handleSubmit = (review: MyReview) => {
+    saveReview(review);
+    setMyReviews((prev) => [review, ...prev.filter((r) => r.bookingId !== review.bookingId)]);
+  };
 
   return (
     <>
@@ -110,17 +176,70 @@ export default function BookingsPage() {
                   </span>
                 </div>
 
+                {changes[b.id]?.requestedDate && b.status !== "cancelled" && (
+                  <p className="mt-3 rounded-lg bg-gold-500/15 px-3 py-2 text-xs font-medium text-gold-600">
+                    Change requested to{" "}
+                    {new Date(changes[b.id].requestedDate as string).toLocaleDateString(
+                      "en-GB",
+                      { day: "2-digit", month: "short", year: "numeric" }
+                    )}{" "}
+                    · awaiting confirmation
+                  </p>
+                )}
+
+                {(() => {
+                  const mine = reviewFor(b.id, myReviews);
+                  if (!mine) return null;
+                  return (
+                    <div className="mt-4 rounded-xl bg-navy-50/50 p-3">
+                      <div className="flex items-center gap-2">
+                        <span className="flex gap-0.5" aria-label={`${mine.rating} out of 5`}>
+                          {Array.from({ length: 5 }, (_, i) => (
+                            <StarIcon
+                              key={i}
+                              className={`h-3.5 w-3.5 ${
+                                i < mine.rating ? "text-gold-500" : "text-navy-200"
+                              }`}
+                            />
+                          ))}
+                        </span>
+                        <p className="text-xs font-bold text-navy-800">
+                          {mine.title}
+                        </p>
+                      </div>
+                      <p className="mt-1 line-clamp-2 text-xs text-muted">
+                        {mine.text}
+                      </p>
+                    </div>
+                  );
+                })()}
+
                 <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-4">
                   <p className="text-xl font-extrabold text-navy-800">
                     ${b.price.toLocaleString()}
                   </p>
                   <div className="flex flex-1 gap-2 sm:flex-none">
-                    <button className="flex-1 rounded-full border border-navy-200 px-4 py-2 text-xs font-semibold text-navy-700 transition hover:bg-navy-50 sm:flex-none">
+                    <button
+                      onClick={() => openBooking(b, "details")}
+                      className="flex-1 rounded-full border border-navy-200 px-4 py-2 text-xs font-semibold text-navy-700 transition hover:bg-navy-50 sm:flex-none"
+                    >
                       View details
                     </button>
                     {b.status === "upcoming" && (
-                      <button className="flex-1 rounded-full bg-navy-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-navy-600 sm:flex-none">
+                      <button
+                        onClick={() => openBooking(b, "manage")}
+                        className="flex-1 rounded-full bg-navy-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-navy-600 sm:flex-none"
+                      >
                         Manage
+                      </button>
+                    )}
+                    {b.status === "completed" && (
+                      <button
+                        onClick={() => openReview(b)}
+                        className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-gold-500 px-4 py-2 text-xs font-bold text-navy-800 transition hover:bg-gold-400 sm:flex-none"
+                      >
+                        <StarIcon className="h-3.5 w-3.5" />
+                        {reviewFor(b.id, myReviews) ? "Edit review" : "Write a review"}
                       </button>
                     )}
                   </div>
@@ -130,6 +249,22 @@ export default function BookingsPage() {
           ))}
         </div>
       )}
+      <BookingDrawer
+        open={viewOpen}
+        mode={mode}
+        booking={viewing}
+        onClose={closeBooking}
+        onRequestChange={handleRequestChange}
+        onCancel={handleCancel}
+      />
+
+      <ReviewFormDrawer
+        open={reviewOpen}
+        onClose={closeReview}
+        onSubmit={handleSubmit}
+        booking={reviewing}
+        existing={reviewing ? reviewFor(reviewing.id, myReviews) : undefined}
+      />
     </>
   );
 }

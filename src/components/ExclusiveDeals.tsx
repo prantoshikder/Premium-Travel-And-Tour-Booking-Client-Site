@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { deals } from "@/temp/home";
 import SectionHeading from "./SectionHeading";
+import BookNowButton from "./site/BookNowButton";
+import { slugify } from "@/lib/slug";
 
 export default function ExclusiveDeals() {
   return (
@@ -42,12 +44,14 @@ export default function ExclusiveDeals() {
                       ${d.oldPrice}
                     </span>
                   </div>
-                  <a
-                    href="#"
-                    className="rounded-full bg-navy-500 px-5 py-2 text-xs font-semibold text-white transition hover:bg-navy-600"
-                  >
-                    Book Now
-                  </a>
+                  <BookNowButton
+                    reference={`DEAL-${slugify(d.title).toUpperCase()}`}
+                    title={d.title}
+                    duration={d.duration}
+                    price={d.price}
+                    image={d.image}
+                    savedAmount={d.oldPrice - d.price}
+                  />
                 </div>
               </div>
             </article>

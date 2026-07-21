@@ -1,4 +1,6 @@
 import Image from "next/image";
+import BookNowButton from "./site/BookNowButton";
+import { slugify } from "@/lib/slug";
 import { packages } from "@/temp/home";
 import { PlaneIcon, HotelIcon, CompassIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
@@ -55,12 +57,15 @@ export default function BestPackages() {
                 })}
               </div>
 
-              <a
-                href="#"
-                className="mt-4 block rounded-full border border-navy-200 py-2.5 text-center text-xs font-semibold text-navy-700 transition hover:border-navy-500 hover:bg-navy-500 hover:text-white"
-              >
-                View Details
-              </a>
+              <BookNowButton
+                reference={`PKG-${slugify(p.title).toUpperCase()}`}
+                title={p.title}
+                duration={p.duration}
+                price={p.price}
+                image={p.image}
+                label="Book this package"
+                className="mt-4 block w-full rounded-full border border-navy-200 py-2.5 text-center text-xs font-semibold text-navy-700 transition hover:border-navy-500 hover:bg-navy-500 hover:text-white"
+              />
             </div>
           </article>
         ))}

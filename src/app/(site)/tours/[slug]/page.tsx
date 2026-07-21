@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import Rating from "@/components/site/Rating";
 import FaqSection from "@/components/site/FaqSection";
+import BookNowButton from "@/components/site/BookNowButton";
 import { ClockIcon, PinIcon, UsersIcon, ShieldIcon, CheckIcon } from "@/components/Icons";
 import { absoluteUrl, breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { tourBySlug, tourList, tourSlug, tourSlugs } from "@/temp/tours";
@@ -236,12 +237,15 @@ export default async function TourDetailPage({ params }: Params) {
             </div>
           </dl>
 
-          <Link
-            href="/contact"
+          <BookNowButton
+            reference={`TOUR-${tour.id.toUpperCase()}`}
+            title={tour.title}
+            duration={tour.duration}
+            price={tour.price}
+            image={tour.image}
+            label="Book this tour"
             className="mt-5 flex w-full items-center justify-center rounded-full bg-gold-500 py-3.5 text-sm font-bold text-navy-800 shadow-md transition hover:bg-gold-400"
-          >
-            Request this tour
-          </Link>
+          />
           <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-muted">
             <ShieldIcon className="h-3.5 w-3.5 text-teal-600" />
             Free cancellation within 24 hours

@@ -1,7 +1,10 @@
 import Image from "next/image";
-import { testimonials } from "@/temp/home";
+import Link from "next/link";
+import { reviews, reviewStats } from "@/temp/reviews";
 import { StarIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
+
+const { total, average } = reviewStats();
 
 export default function Testimonials() {
   return (
@@ -10,11 +13,11 @@ export default function Testimonials() {
         <SectionHeading
           eyebrow="What Travelers Say"
           title="Trusted by Thousands"
-          subtitle="Real stories from happy travelers who explored the world with us."
+          subtitle={`Rated ${average}/5 across ${total} verified reviews from travellers who booked with us.`}
         />
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
+          {reviews.slice(0, 3).map((t) => (
             <figure
               key={t.name}
               className="flex flex-col rounded-2xl bg-white p-6 shadow-soft"
@@ -49,12 +52,12 @@ export default function Testimonials() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <a
-            href="#"
+          <Link
+            href="/reviews"
             className="rounded-full border border-navy-200 bg-white px-7 py-3 text-sm font-semibold text-navy-700 transition hover:border-navy-500 hover:bg-navy-500 hover:text-white"
           >
-            Read More Reviews
-          </a>
+            Read all {total} reviews
+          </Link>
         </div>
       </div>
     </section>

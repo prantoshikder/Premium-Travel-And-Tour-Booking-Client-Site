@@ -51,7 +51,10 @@ export default function FlightsExplorer() {
     if (!selected || seats.length === 0) return;
 
     saveBooking({
-      flightId: selected.id,
+      kind: "flight",
+      reference: selected.id,
+      title: `${selected.airline} · ${selected.fromCity} → ${selected.toCity}`,
+      subtitle: `${selected.depart} – ${selected.arrive} · ${selected.duration}`,
       airline: selected.airline,
       logo: selected.logo,
       from: selected.from,

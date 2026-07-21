@@ -26,13 +26,8 @@ export const heroFeatures = [
 ];
 
 
-export const destinations = [
-  { name: "Bali", country: "Indonesia", image: img("1537996194471-e657df975ab4") },
-  { name: "Swiss Alps", country: "Switzerland", image: img("1531366936337-7c912a4589a7") },
-  { name: "Santorini", country: "Greece", image: img("1570077188670-e3a8d69ac5ff") },
-  { name: "Dubai", country: "UAE", image: img("1512453979798-5ea266f8880c") },
-  { name: "Kyoto", country: "Japan", image: img("1545569341-9eb8b30979d9") },
-];
+/** Moved to ./destinations — re-exported so older imports keep working. */
+export { destinations } from "./destinations";
 
 
 export const tourCategories = [

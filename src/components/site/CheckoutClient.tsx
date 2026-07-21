@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/lib/auth";
 import { clearBooking, loadBooking, type PendingBooking } from "@/lib/booking";
@@ -121,7 +122,7 @@ export default function CheckoutClient() {
       <div className="rounded-2xl border border-dashed border-navy-100 bg-white py-20 text-center">
         <p className="text-lg font-bold text-navy-800">Nothing to pay for yet</p>
         <p className="mt-1 text-sm text-muted">
-          Pick a flight and choose your seats to start a booking.
+          Pick a flight, tour or deal to start a booking.
         </p>
         <Link
           href="/flights"
@@ -143,8 +144,9 @@ export default function CheckoutClient() {
           Booking confirmed
         </h2>
         <p className="mt-1 text-sm text-muted">
-          Seats {booking.seats.join(", ")} on {booking.airline} ·{" "}
-          {booking.fromCity} → {booking.toCity}
+          {booking.kind === "flight"
+            ? `Seats ${booking.seats.join(", ")} on ${booking.airline} · ${booking.fromCity} → ${booking.toCity}`
+            : `${booking.title} · ${booking.duration} · departing ${new Date(booking.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}`}
         </p>
         <p className="mt-1 text-sm text-muted">
           Paid ${booking.total} with {active.label}. Your e-ticket is on its way
@@ -335,17 +337,87 @@ export default function CheckoutClient() {
           </h2>
 
           <div className="mt-4 flex items-center gap-3">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-xl">
-              {booking.logo}
-            </span>
-            <div>
-              <p className="text-sm font-bold text-navy-800">{booking.airline}</p>
-              <p className="text-xs text-muted">
-                {booking.flightId.toUpperCase()} · {booking.stops}
+            {booking.kind === "flight" ? (
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-xl">
+                {booking.logo}
+              </span>
+            ) : booking.image ? (
+              <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl">
+                <Image
+                  src={booking.image}
+                  alt={booking.title}
+                  fill
+                  sizes="44px"
+                  className="object-cover"
+                />
+              </span>
+            ) : null}
+            <div className="min-w-0">
+              <p className="truncate text-sm font-bold text-navy-800">
+                {booking.kind === "flight" ? booking.airline : booking.title}
+              </p>
+              <p className="truncate text-xs text-muted">
+                {booking.reference.toUpperCase()} ·{" "}
+                {booking.kind === "flight" ? booking.stops : booking.duration}
               </p>
             </div>
           </div>
 
+          {booking.kind === "package" && (
+            <div className="mt-4 space-y-2 rounded-xl bg-navy-50/50 p-3 text-sm">
+              <div className="flex justify-between gap-3">
+                <span className="text-muted">Departure</span>
+                <span className="font-semibold text-navy-800">
+                  {new Date(booking.date).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="text-muted">Duration</span>
+                <span className="font-semibold text-navy-800">
+                  {booking.duration}
+                </span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="text-muted">Travellers</span>
+                <span className="font-semibold text-navy-800">
+                  {booking.adults} {booking.adults > 1 ? "adults" : "adult"}
+                  {booking.children > 0 &&
+                    `, ${booking.children} ${booking.children > 1 ? "children" : "child"}`}
+                </span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="text-muted">Rooms</span>
+                <span className="font-semibold text-navy-800">{booking.rooms}</span>
+              </div>
+              {booking.savedAmount ? (
+                <p className="inline-block rounded-md bg-gold-500/20 px-2 py-1 text-[11px] font-bold text-gold-600">
+                  You save ${booking.savedAmount}
+                </p>
+              ) : null}
+            </div>
+          )}
+
+          {booking.kind === "package" && booking.addOns.length > 0 && (
+            <div className="mt-4">
+              <p className="text-xs font-semibold text-muted">Add-ons</p>
+              <ul className="mt-1.5 space-y-1 text-sm text-navy-700">
+                {booking.addOns.map((a) => (
+                  <li key={a.name} className="flex justify-between gap-3">
+                    <span>{a.name}</span>
+                    <span className="font-semibold">
+                      ${a.price} × {booking.guests}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {booking.kind === "flight" && (
           <div className="mt-4 flex items-center justify-between rounded-xl bg-navy-50/50 p-3">
             <div>
               <p className="text-base font-extrabold text-navy-800">
@@ -371,35 +443,47 @@ export default function CheckoutClient() {
               <p className="text-[11px] text-muted">{booking.to}</p>
             </div>
           </div>
+          )}
 
-          <div className="mt-4">
-            <p className="text-xs font-semibold text-muted">Seats</p>
-            <div className="mt-1.5 flex flex-wrap gap-1.5">
-              {booking.seats.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-md bg-navy-50 px-2 py-1 text-[11px] font-bold text-navy-700"
-                >
-                  {s}
-                </span>
-              ))}
+          {booking.kind === "flight" && (
+            <div className="mt-4">
+              <p className="text-xs font-semibold text-muted">Seats</p>
+              <div className="mt-1.5 flex flex-wrap gap-1.5">
+                {booking.seats.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-md bg-navy-50 px-2 py-1 text-[11px] font-bold text-navy-700"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <dl className="mt-5 space-y-2 border-t border-navy-50 pt-4 text-sm">
             <div className="flex justify-between text-navy-700">
               <dt>
-                Base fare · {booking.seats.length}{" "}
-                {booking.seats.length > 1 ? "passengers" : "passenger"}
+                {booking.kind === "flight"
+                  ? `Base fare · ${booking.seats.length} ${booking.seats.length > 1 ? "passengers" : "passenger"}`
+                  : `Package · ${booking.guests} ${booking.guests > 1 ? "travellers" : "traveller"}`}
               </dt>
               <dd className="font-semibold">
-                ${booking.baseFare * booking.seats.length}
+                $
+                {(booking.kind === "flight"
+                  ? booking.baseFare * booking.seats.length
+                  : booking.baseFare
+                ).toLocaleString()}
               </dd>
             </div>
-            <div className="flex justify-between text-navy-700">
-              <dt>Seat upgrades</dt>
-              <dd className="font-semibold">${booking.seatFee}</dd>
-            </div>
+            {booking.seatFee > 0 && (
+              <div className="flex justify-between text-navy-700">
+                <dt>{booking.kind === "flight" ? "Seat upgrades" : "Add-ons"}</dt>
+                <dd className="font-semibold">
+                  ${booking.seatFee.toLocaleString()}
+                </dd>
+              </div>
+            )}
             <div className="flex justify-between text-navy-700">
               <dt>Taxes & fees</dt>
               <dd className="font-semibold">${booking.taxes}</dd>
@@ -453,7 +537,7 @@ export default function CheckoutClient() {
 /* ------------------------------------------------------------------ pieces */
 
 function Stepper() {
-  const steps = ["Flight", "Seats", "Payment"];
+  const steps = ["Choose", "Trip details", "Payment"];
   return (
     <ol className="mb-8 flex items-center gap-2 text-xs font-semibold">
       {steps.map((s, i) => {
