@@ -1,6 +1,6 @@
 import { heroFeatures, heroImage } from "@/temp/home";
-import Image from "next/image";
 import Link from "next/link";
+import HeroBackground from "./HeroBackground";
 import { Icon } from "./Icons";
 import SearchWidget from "./SearchWidget";
 
@@ -9,13 +9,9 @@ export default function Hero() {
     <section id="home" data-hero className="relative">
       {/* Hero visual */}
       <div className="relative overflow-hidden">
-        <Image
-          src={heroImage}
-          alt="Santorini coastline with hot air balloons"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
+        <HeroBackground
+          image={heroImage}
+          alt="Aerial view of a rugged coastline where cliffs meet a sandy beach and breaking waves"
         />
         <div className="absolute inset-0 bg-linear-to-b from-navy-900/85 via-navy-800/55 to-navy-800/20" />
         <div className="absolute inset-0 bg-linear-to-r from-navy-900/70 to-transparent" />

@@ -203,7 +203,8 @@ export const blogPosts = [
 ];
 
 
-export const heroImage = img("1613395877344-13d4a8e0d49e", 1200, 900);
+/** First frame of public/hero.webm, so the still and the clip match. */
+export const heroImage = "/hero-poster.jpg";
 
 
 export const whyImage = img("1502920917128-1aa500764cbd", 700, 800);
