@@ -1,4 +1,4 @@
-import { heroStats } from "@/lib/data";
+import { heroStats } from "@/temp/home";
 import { Icon } from "./Icons";
 
 export default function HeroStats() {

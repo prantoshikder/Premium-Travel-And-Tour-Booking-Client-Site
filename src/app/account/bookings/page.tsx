@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { bookings, type BookingStatus } from "@/lib/data";
+import { bookings, type BookingStatus } from "@/temp/account";
 import PageHeader from "@/components/account/PageHeader";
 import { PinIcon, TicketIcon } from "@/components/Icons";
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import ToursExplorer from "@/components/site/ToursExplorer";
-import { heroImage } from "@/lib/data";
+import { heroImage } from "@/temp/home";
 
 export const metadata: Metadata = {
   title: "Tours & Packages — TravelPerk",

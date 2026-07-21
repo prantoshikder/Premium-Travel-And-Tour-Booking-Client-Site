@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import ActivitiesExplorer from "@/components/site/ActivitiesExplorer";
-import { whyImage } from "@/lib/data";
+import { whyImage } from "@/temp/home";
 
 export const metadata: Metadata = {
   title: "Activities & Experiences — TravelPerk",

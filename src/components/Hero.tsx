@@ -1,4 +1,4 @@
-import { heroFeatures, heroImage } from "@/lib/data";
+import { heroFeatures, heroImage } from "@/temp/home";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "./Icons";
@@ -46,12 +46,15 @@ export default function Hero() {
         <SearchWidget />
       </div>
 
-      {/* Feature strip */}
+      {/* Feature strip — one card, hairline dividers like the search widget */}
       <div className="container-x mt-10">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-navy-50 bg-navy-50 shadow-soft sm:grid-cols-2 lg:grid-cols-4">
           {heroFeatures.map((f) => (
-            <div key={f.title} className="flex items-start gap-3">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-navy-500">
+            <div
+              key={f.title}
+              className="group flex items-start gap-3 bg-white p-5 transition-colors duration-200 hover:bg-navy-50/50"
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-navy-500 transition-colors duration-200 group-hover:bg-gold-500 group-hover:text-navy-800">
                 <Icon name={f.icon} className="h-5 w-5" />
               </span>
               <div>

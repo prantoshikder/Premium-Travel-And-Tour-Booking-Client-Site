@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import { Icon } from "@/components/Icons";
-import { visaSteps, visaCountries, heroImage } from "@/lib/data";
+import { heroImage } from "@/temp/home";
+import { visaSteps, visaCountries } from "@/temp/visa";
 
 export const metadata: Metadata = {
   title: "Visa Assistance — TravelPerk",

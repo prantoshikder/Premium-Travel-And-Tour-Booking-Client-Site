@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { deals } from "@/lib/data";
+import { deals } from "@/temp/home";
 import SectionHeading from "./SectionHeading";
 
 export default function ExclusiveDeals() {

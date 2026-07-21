@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { whyFeatures, whyImage } from "@/lib/data";
+import { whyFeatures, whyImage } from "@/temp/home";
 import { Icon } from "./Icons";
 
 export default function WhyTravel() {

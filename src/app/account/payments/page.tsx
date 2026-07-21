@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { payments, type PaymentStatus } from "@/lib/data";
+import { payments, type PaymentStatus } from "@/temp/account";
 import PageHeader from "@/components/account/PageHeader";
 import { ChartIcon, SearchIcon, TicketIcon } from "@/components/Icons";
 

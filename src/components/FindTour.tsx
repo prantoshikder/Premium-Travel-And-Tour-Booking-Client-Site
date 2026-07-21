@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { tourCategories } from "@/lib/data";
+import { tourCategories } from "@/temp/home";
 import { Icon } from "./Icons";
 import SectionHeading from "./SectionHeading";
 

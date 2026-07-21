@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { packages } from "@/lib/data";
+import { packages } from "@/temp/home";
 import { PlaneIcon, HotelIcon, CompassIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
 

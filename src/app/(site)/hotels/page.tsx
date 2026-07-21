@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import HotelsExplorer from "@/components/site/HotelsExplorer";
-import { hotelHeroImage } from "@/lib/data";
+import { hotelHeroImage } from "@/temp/hotels";
 
 export const metadata: Metadata = {
   title: "Hotels & Stays — TravelPerk",

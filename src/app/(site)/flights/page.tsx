@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import FlightsExplorer from "@/components/site/FlightsExplorer";
 import SearchWidget from "@/components/SearchWidget";
-import { airplaneImage } from "@/lib/data";
+import { airplaneImage } from "@/temp/flights";
 
 export const metadata: Metadata = {
   title: "Flights — TravelPerk",

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { destinations } from "@/lib/data";
+import { destinations } from "@/temp/home";
 import { PinIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
 

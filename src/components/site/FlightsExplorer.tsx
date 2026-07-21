@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { flightList } from "@/lib/data";
+import { flightList } from "@/temp/flights";
 import { useAuth } from "@/lib/auth";
 import { saveBooking } from "@/lib/booking";
 import { useDimension } from "@/hooks/useDimension";

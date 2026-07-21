@@ -1,6 +1,6 @@
 "use client";
 
-import { hotelList } from "@/lib/data";
+import { hotelList } from "@/temp/hotels";
 import Image from "next/image";
 import { useState } from "react";
 import { PinIcon } from "../Icons";

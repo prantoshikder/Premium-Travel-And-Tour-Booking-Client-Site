@@ -1,4 +1,4 @@
-import { footerColumns } from "@/lib/data";
+import { footerColumns } from "@/temp/layout";
 import { PlaneIcon, ArrowRightIcon } from "./Icons";
 
 function Social({ children }: { children: React.ReactNode }) {

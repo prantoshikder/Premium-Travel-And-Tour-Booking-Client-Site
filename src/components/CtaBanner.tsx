@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { airplaneImage } from "@/lib/data";
+import { airplaneImage } from "@/temp/flights";
 import { ArrowRightIcon } from "./Icons";
 
 export default function CtaBanner() {

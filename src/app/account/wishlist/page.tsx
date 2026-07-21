@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { destinations } from "@/lib/data";
+import { destinations } from "@/temp/home";
 import PageHeader from "@/components/account/PageHeader";
 import { PinIcon, HeartIcon, ArrowRightIcon } from "@/components/Icons";
 

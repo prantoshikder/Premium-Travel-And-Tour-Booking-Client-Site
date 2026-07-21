@@ -1,6 +1,6 @@
 "use client";
 
-import { tourCategoryNames, tourList } from "@/lib/data";
+import { tourCategoryNames, tourList } from "@/temp/tours";
 import Image from "next/image";
 import { useState } from "react";
 import { ClockIcon, PinIcon, SearchIcon } from "../Icons";

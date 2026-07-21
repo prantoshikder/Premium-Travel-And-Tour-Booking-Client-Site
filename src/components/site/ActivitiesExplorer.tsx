@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { activityList, tourCategoryNames } from "@/lib/data";
+import { activityList } from "@/temp/activities";
+import { tourCategoryNames } from "@/temp/tours";
 import { PinIcon } from "../Icons";
 import Rating from "./Rating";
 

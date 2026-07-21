@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import ContactForm from "@/components/site/ContactForm";
 import { Icon } from "@/components/Icons";
-import { contactChannels, airplaneImage } from "@/lib/data";
+import { contactChannels } from "@/temp/contact";
+import { airplaneImage } from "@/temp/flights";
 
 export const metadata: Metadata = {
   title: "Contact Us — TravelPerk",

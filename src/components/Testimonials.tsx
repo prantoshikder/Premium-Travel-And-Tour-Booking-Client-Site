@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { testimonials } from "@/lib/data";
+import { testimonials } from "@/temp/home";
 import { StarIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
 

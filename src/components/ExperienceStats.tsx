@@ -1,4 +1,4 @@
-import { experienceStats } from "@/lib/data";
+import { experienceStats } from "@/temp/home";
 import { Icon } from "./Icons";
 
 export default function ExperienceStats() {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { blogPosts } from "@/lib/data";
+import { blogPosts } from "@/temp/home";
 import { ArrowRightIcon } from "./Icons";
 import SectionHeading from "./SectionHeading";
 

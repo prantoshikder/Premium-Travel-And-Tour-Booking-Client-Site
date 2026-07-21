@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { authHighlights, authImage } from "@/lib/data";
+import { authHighlights, authImage } from "@/temp/auth";
 import { PlaneIcon, CheckIcon, GoogleIcon, FacebookIcon } from "../Icons";
 
 export default function AuthShell({
