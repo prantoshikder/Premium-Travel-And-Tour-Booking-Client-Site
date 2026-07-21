@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import { hotelList } from "@/lib/data";
+import Image from "next/image";
+import { useState } from "react";
 import { PinIcon } from "../Icons";
+import SortSelect from "../shared/SortSelect";
 import Rating from "./Rating";
 
 type Sort = "recommended" | "price-asc" | "rating";
@@ -21,21 +22,30 @@ export default function HotelsExplorer() {
     <>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-muted">
-          <span className="font-semibold text-navy-800">{list.length}</span> stays
-          available
+          <span className="font-semibold text-navy-800">{list.length}</span>{" "}
+          stays available
         </p>
-        <label className="flex items-center gap-2 text-sm text-navy-700">
-          <span className="text-muted">Sort by</span>
-          <select
-            value={sort}
-            onChange={(e) => setSort(e.target.value as Sort)}
-            className="rounded-xl border border-navy-100 bg-white px-3 py-2 text-sm font-semibold text-navy-800 outline-none focus:border-navy-500 focus:ring-4 focus:ring-navy-500/10"
-          >
-            <option value="recommended">Recommended</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="rating">Top Rated</option>
-          </select>
-        </label>
+        <SortSelect<Sort>
+          value={sort}
+          onChange={setSort}
+          options={[
+            {
+              value: "recommended",
+              label: "Recommended",
+              hint: "Our best picks for you",
+            },
+            {
+              value: "price-asc",
+              label: "Price: Low to High",
+              hint: "Cheapest stays first",
+            },
+            {
+              value: "rating",
+              label: "Top Rated",
+              hint: "Highest guest score",
+            },
+          ]}
+        />
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -44,7 +54,7 @@ export default function HotelsExplorer() {
             key={h.id}
             className="group flex flex-col overflow-hidden rounded-2xl border border-navy-50 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card"
           >
-            <div className="relative aspect-[16/10] overflow-hidden">
+            <div className="relative aspect-16/10 overflow-hidden">
               <Image
                 src={h.image}
                 alt={h.name}
