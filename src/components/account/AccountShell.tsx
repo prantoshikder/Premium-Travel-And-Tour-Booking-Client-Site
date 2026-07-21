@@ -4,7 +4,9 @@ import { useAuth } from "@/lib/auth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Avatar from "../auth/Avatar";
-import { ArrowRightIcon, LogoutIcon, PlaneIcon } from "../Icons";
+import Footer from "../Footer";
+import { LogoutIcon } from "../Icons";
+import Navbar from "../Navbar";
 import { accountNav } from "./nav";
 
 export default function AccountShell({
@@ -18,33 +20,15 @@ export default function AccountShell({
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-navy-50/40">
-      {/* Top bar */}
-      <header className="sticky top-0 z-40 border-b border-navy-50 bg-white/90 backdrop-blur">
-        <div className="container-x flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-navy-800">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-gold-500 text-navy-800">
-              <PlaneIcon className="h-5 w-5" strokeWidth={2} />
-            </span>
-            <span className="text-xl font-extrabold tracking-tight">
-              travel<span className="text-gold-600">perk</span>
-            </span>
-          </Link>
-          <Link
-            href="/"
-            className="flex items-center gap-1.5 rounded-full border border-navy-100 bg-white px-4 py-2 text-sm font-semibold text-navy-700 transition hover:bg-navy-50"
-          >
-            Back to site
-            <ArrowRightIcon className="h-4 w-4" strokeWidth={2.2} />
-          </Link>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col bg-navy-50/40">
+      {/* No hero here, so the site navbar renders with its solid backdrop. */}
+      <Navbar />
 
-      <div className="container-x grid gap-8 py-8 lg:grid-cols-[260px_1fr]">
+      <div className="container-x grid flex-1 gap-6 pt-28 pb-10 sm:pt-32 lg:grid-cols-[260px_1fr] lg:gap-8">
         {/* Sidebar */}
-        <aside className="lg:sticky lg:top-24 lg:self-start">
+        <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
           {/* User card */}
-          <div className="flex items-center gap-3 rounded-2xl border border-navy-50 bg-white p-4 shadow-soft">
+          <div className="flex items-center gap-3 rounded-2xl border border-navy-50 bg-white p-3.5 shadow-soft sm:p-4">
             <Avatar user={user} className="h-12 w-12 text-sm" />
             <div className="min-w-0">
               <p className="truncate text-sm font-bold text-navy-800">
@@ -75,7 +59,7 @@ export default function AccountShell({
             })}
             <button
               onClick={logout}
-              className="flex shrink-0 items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-50 lg:mt-2 lg:border-t lg:border-navy-50"
+              className="hidden shrink-0 items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-50 lg:mt-2 lg:flex lg:border-t lg:border-navy-50"
             >
               <LogoutIcon className="h-4.5 w-4.5" />
               <span className="whitespace-nowrap">Log out</span>
@@ -86,6 +70,8 @@ export default function AccountShell({
         {/* Content */}
         <main className="min-w-0">{children}</main>
       </div>
+
+      <Footer />
     </div>
   );
 }

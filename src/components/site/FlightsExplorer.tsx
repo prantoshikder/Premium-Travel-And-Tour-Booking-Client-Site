@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { flightList } from "@/lib/data";
 import { useAuth } from "@/lib/auth";
 import { saveBooking } from "@/lib/booking";
+import { useDimension } from "@/hooks/useDimension";
 import { CheckIcon, ClockIcon, PlaneIcon } from "../Icons";
 import Drawer from "../Drawer";
 import SeatMap, { seatExtra } from "./SeatMap";
@@ -23,6 +24,7 @@ const toMinutes = (d: string) => {
 export default function FlightsExplorer() {
   const router = useRouter();
   const { user, ready } = useAuth();
+  const { isMobile } = useDimension();
   const [sort, setSort] = useState<Sort>("cheapest");
   const [selected, setSelected] = useState<Flight | null>(null);
   const [seats, setSeats] = useState<string[]>([]);
@@ -173,10 +175,11 @@ export default function FlightsExplorer() {
       <Drawer
         open={!!selected}
         onClose={() => setSelected(null)}
-        side="right"
-        size="26rem"
+        // A side panel needs width phones don't have — slide up instead.
+        side={isMobile ? "bottom" : "right"}
+        size={isMobile ? "92vh" : "26rem"}
         ariaLabel="Flight details"
-        className="flex flex-col"
+        className={`flex flex-col ${isMobile ? "rounded-t-3xl" : ""}`}
       >
         {selected && (
           <>

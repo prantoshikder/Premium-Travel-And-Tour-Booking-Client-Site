@@ -13,7 +13,8 @@ import {
   ChevronDownIcon,
 } from "../Icons";
 
-const menuItems = [
+/** Shared with the mobile drawer so both surfaces stay in sync. */
+export const accountMenuItems = [
   { label: "My Profile", href: "/account/profile", Icon: UserIcon },
   { label: "My Bookings", href: "/account/bookings", Icon: TicketIcon },
   { label: "Wishlist", href: "/account/wishlist", Icon: HeartIcon },
@@ -88,7 +89,7 @@ export default function UserMenu({ dark = true }: { dark?: boolean }) {
 
         {/* Links */}
         <nav className="p-1.5">
-          {menuItems.map(({ label, href, Icon }) => (
+          {accountMenuItems.map(({ label, href, Icon }) => (
             <Link
               key={label}
               href={href}

@@ -287,6 +287,116 @@ export const bookings: {
   },
 ];
 
+export type PaymentStatus = "paid" | "pending" | "refunded" | "failed";
+
+export const payments: {
+  id: string;
+  bookingId: string;
+  title: string;
+  /** ISO date — formatted in the UI so the locale decides how it reads. */
+  date: string;
+  method: string;
+  /** Card last four, wallet number tail, or bank reference. */
+  account: string;
+  badge: string;
+  badgeClass: string;
+  amount: number;
+  status: PaymentStatus;
+  invoice: string;
+}[] = [
+  {
+    id: "PAY-90412",
+    bookingId: "TP-2048",
+    title: "Santorini Escape",
+    date: "2026-06-18",
+    method: "Visa",
+    account: "•••• 4242",
+    badge: "VISA",
+    badgeClass: "bg-navy-500 text-white",
+    amount: 1899,
+    status: "paid",
+    invoice: "INV-2026-0412",
+  },
+  {
+    id: "PAY-90388",
+    bookingId: "TP-1994",
+    title: "Bali Beach Retreat",
+    date: "2026-05-30",
+    method: "bKash",
+    account: "01712 ••• 456",
+    badge: "bK",
+    badgeClass: "bg-[#e2136e] text-white",
+    amount: 1299,
+    status: "paid",
+    invoice: "INV-2026-0388",
+  },
+  {
+    id: "PAY-90310",
+    bookingId: "TP-2048",
+    title: "Seat upgrade · 2 seats",
+    date: "2026-05-12",
+    method: "PayPal",
+    account: "dd@gmail.com",
+    badge: "PP",
+    badgeClass: "bg-[#003087] text-white",
+    amount: 240,
+    status: "pending",
+    invoice: "INV-2026-0310",
+  },
+  {
+    id: "PAY-90154",
+    bookingId: "TP-1820",
+    title: "Kyoto Cultural Tour",
+    date: "2026-02-02",
+    method: "Mastercard",
+    account: "•••• 8891",
+    badge: "MC",
+    badgeClass: "bg-gold-600 text-white",
+    amount: 1450,
+    status: "paid",
+    invoice: "INV-2026-0154",
+  },
+  {
+    id: "PAY-89970",
+    bookingId: "TP-1710",
+    title: "Swiss Alps Adventure",
+    date: "2025-12-20",
+    method: "Bank transfer",
+    account: "BRAC •••• 3312",
+    badge: "BT",
+    badgeClass: "bg-teal-500 text-white",
+    amount: 2100,
+    status: "paid",
+    invoice: "INV-2025-9970",
+  },
+  {
+    id: "PAY-89820",
+    bookingId: "TP-1655",
+    title: "Dubai City Break",
+    date: "2025-11-14",
+    method: "Visa",
+    account: "•••• 4242",
+    badge: "VISA",
+    badgeClass: "bg-navy-500 text-white",
+    amount: 1150,
+    status: "refunded",
+    invoice: "INV-2025-9820",
+  },
+  {
+    id: "PAY-89744",
+    bookingId: "TP-1655",
+    title: "Dubai City Break · first attempt",
+    date: "2025-11-13",
+    method: "Nagad",
+    account: "01988 ••• 210",
+    badge: "Ng",
+    badgeClass: "bg-[#ec1c24] text-white",
+    amount: 1150,
+    status: "failed",
+    invoice: "—",
+  },
+];
+
 export const authHighlights = [
   "Exclusive member-only deals on flights & hotels",
   "Save trips and manage bookings in one place",

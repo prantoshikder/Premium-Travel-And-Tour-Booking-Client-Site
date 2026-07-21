@@ -80,13 +80,15 @@ export default function BookingsPage() {
                   className="object-cover"
                 />
               </div>
-              <div className="flex flex-1 flex-col p-5">
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-lg font-bold text-navy-800">{b.title}</h3>
+                  <div className="min-w-0">
+                    <h3 className="text-base font-bold text-navy-800 sm:text-lg">
+                      {b.title}
+                    </h3>
                     <p className="mt-0.5 flex items-center gap-1 text-sm text-muted">
-                      <PinIcon className="h-4 w-4" />
-                      {b.location}
+                      <PinIcon className="h-4 w-4 shrink-0" />
+                      <span className="truncate">{b.location}</span>
                     </p>
                   </div>
                   <span
@@ -108,16 +110,16 @@ export default function BookingsPage() {
                   </span>
                 </div>
 
-                <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-4">
                   <p className="text-xl font-extrabold text-navy-800">
                     ${b.price.toLocaleString()}
                   </p>
-                  <div className="flex gap-2">
-                    <button className="rounded-full border border-navy-200 px-4 py-2 text-xs font-semibold text-navy-700 transition hover:bg-navy-50">
+                  <div className="flex flex-1 gap-2 sm:flex-none">
+                    <button className="flex-1 rounded-full border border-navy-200 px-4 py-2 text-xs font-semibold text-navy-700 transition hover:bg-navy-50 sm:flex-none">
                       View details
                     </button>
                     {b.status === "upcoming" && (
-                      <button className="rounded-full bg-navy-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-navy-600">
+                      <button className="flex-1 rounded-full bg-navy-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-navy-600 sm:flex-none">
                         Manage
                       </button>
                     )}

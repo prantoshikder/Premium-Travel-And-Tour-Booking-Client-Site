@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import Select from "./shared/Select";
 import {
   PlaneIcon,
   HotelIcon,
@@ -337,18 +338,17 @@ function Field({
       </label>
 
       {def.type === "select" ? (
-        <select
+        <Select
           id={id}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className={`${inputClass} cursor-pointer`}
-        >
-          {def.options?.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </select>
+          ariaLabel={def.label}
+          value={value || (def.options?.[0] ?? "")}
+          onChange={onChange}
+          options={(def.options ?? []).map((o) => ({ value: o, label: o }))}
+          variant="ghost"
+          size="sm"
+          block
+          triggerClassName="-ml-1.5 py-0.5 text-sm font-semibold text-navy-800"
+        />
       ) : (
         <input
           id={id}

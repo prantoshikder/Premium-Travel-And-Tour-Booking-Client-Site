@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth";
 import PageHeader from "@/components/account/PageHeader";
-import { LockIcon, LogoutIcon } from "@/components/Icons";
+import PasswordStrength from "@/components/auth/PasswordStrength";
+import { CheckIcon, LockIcon, LogoutIcon } from "@/components/Icons";
+import Select from "@/components/shared/Select";
+import { useAuth } from "@/lib/auth";
+import { validateConfirmPassword, validatePassword } from "@/lib/validation";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 function Toggle({
   checked,
@@ -26,7 +28,7 @@ function Toggle({
     >
       <span
         className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${
-          checked ? "left-[22px]" : "left-0.5"
+          checked ? "left-5.5" : "left-0.5"
         }`}
       />
     </button>
@@ -41,7 +43,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-navy-50 bg-white p-6 shadow-soft">
+    <section className="rounded-2xl border border-navy-50 bg-white p-4 shadow-soft sm:p-6">
       <h3 className="text-base font-bold text-navy-800">{title}</h3>
       <div className="mt-4 divide-y divide-navy-50">{children}</div>
     </section>
@@ -58,12 +60,179 @@ function Row({
   control: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between gap-4 py-3.5 first:pt-0 last:pb-0">
+    <div className="flex flex-col items-start gap-3 py-3.5 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
       <div className="min-w-0">
         <p className="text-sm font-semibold text-navy-800">{title}</p>
         <p className="mt-0.5 text-xs text-muted">{desc}</p>
       </div>
       {control}
+    </div>
+  );
+}
+
+/** Inline password change — no page hop, so the rest of Settings stays in view. */
+function ChangePassword({ onDone }: { onDone: () => void }) {
+  const [values, setValues] = useState({ current: "", next: "", confirm: "" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [show, setShow] = useState(false);
+  const [status, setStatus] = useState<"idle" | "saving" | "saved">("idle");
+
+  const set = (key: keyof typeof values, v: string) => {
+    setValues((prev) => ({ ...prev, [key]: v }));
+    setErrors((prev) => {
+      const rest = { ...prev };
+      delete rest[key];
+      return rest;
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const next: Record<string, string> = {};
+    if (!values.current) next.current = "Enter your current password";
+    const passwordError = validatePassword(values.next);
+    if (passwordError) next.next = passwordError;
+    else if (values.next === values.current)
+      next.next = "Pick a password you haven't used here before";
+    const confirmError = validateConfirmPassword(values.next, values.confirm);
+    if (confirmError) next.confirm = confirmError;
+
+    setErrors(next);
+    if (Object.keys(next).length) {
+      document.getElementById(`pw-${Object.keys(next)[0]}`)?.focus();
+      return;
+    }
+
+    // No backend yet — show the same states a real save would.
+    setStatus("saving");
+    setTimeout(() => {
+      setStatus("saved");
+      setTimeout(onDone, 1600);
+    }, 900);
+  };
+
+  if (status === "saved") {
+    return (
+      <div className="mt-4 flex items-center gap-2 rounded-xl bg-teal-500/10 px-4 py-3 text-sm font-semibold text-teal-600 animate-fade-up [animation-duration:200ms]">
+        <CheckIcon className="h-4 w-4" strokeWidth={2.5} />
+        Password updated. Use it the next time you sign in.
+      </div>
+    );
+  }
+
+  return (
+    <form
+      id="password-form"
+      onSubmit={handleSubmit}
+      className="mt-4 rounded-2xl border border-navy-100 bg-navy-50/40 p-4 sm:p-5"
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <PasswordField
+          id="pw-current"
+          label="Current password"
+          value={values.current}
+          onChange={(v) => set("current", v)}
+          error={errors.current}
+          show={show}
+          autoComplete="current-password"
+          className="sm:col-span-2"
+        />
+        <div>
+          <PasswordField
+            id="pw-next"
+            label="New password"
+            value={values.next}
+            onChange={(v) => set("next", v)}
+            error={errors.next}
+            show={show}
+            autoComplete="new-password"
+          />
+          <PasswordStrength value={values.next} />
+        </div>
+        <PasswordField
+          id="pw-confirm"
+          label="Confirm new password"
+          value={values.confirm}
+          onChange={(v) => set("confirm", v)}
+          error={errors.confirm}
+          show={show}
+          autoComplete="new-password"
+        />
+      </div>
+
+      <label className="mt-4 flex w-fit cursor-pointer items-center gap-2 text-xs font-medium text-navy-700">
+        <input
+          type="checkbox"
+          checked={show}
+          onChange={(e) => setShow(e.target.checked)}
+          className="h-4 w-4 rounded border-navy-200 accent-navy-500"
+        />
+        Show passwords
+      </label>
+
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <button
+          type="submit"
+          disabled={status === "saving"}
+          className="rounded-full bg-navy-500 px-6 py-2.5 text-sm font-bold text-white transition hover:bg-navy-600 disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {status === "saving" ? "Updating…" : "Update password"}
+        </button>
+        <button
+          type="button"
+          onClick={onDone}
+          className="rounded-full px-4 py-2.5 text-sm font-semibold text-muted transition hover:text-navy-700"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  );
+}
+
+function PasswordField({
+  id,
+  label,
+  value,
+  onChange,
+  error,
+  show,
+  autoComplete,
+  className = "",
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  error?: string;
+  show: boolean;
+  autoComplete: string;
+  className?: string;
+}) {
+  return (
+    <div className={className}>
+      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-navy-800">
+        {label}
+      </label>
+      <input
+        id={id}
+        type={show ? "text" : "password"}
+        value={value}
+        autoComplete={autoComplete}
+        onChange={(e) => onChange(e.target.value)}
+        aria-invalid={!!error}
+        placeholder="••••••••"
+        className={`w-full rounded-xl border bg-white px-4 py-2.5 text-sm text-navy-800 outline-none transition placeholder:text-muted/60 focus:ring-4 ${
+          error
+            ? "border-red-400 focus:border-red-500 focus:ring-red-500/10"
+            : "border-navy-100 focus:border-navy-500 focus:ring-navy-500/10"
+        }`}
+      />
+      {error && (
+        <p role="alert" className="mt-1 text-[11px] text-red-500">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -79,9 +248,14 @@ export default function SettingsPage() {
   });
   const [language, setLanguage] = useState("English");
   const [currency, setCurrency] = useState("USD");
+  const [changingPassword, setChangingPassword] = useState(false);
+  // Bumped on every open so the form starts empty, without flickering on close.
+  const [passwordFormKey, setPasswordFormKey] = useState(0);
 
-  const selectClass =
-    "rounded-xl border border-navy-100 bg-navy-50/40 px-3 py-2 text-sm font-semibold text-navy-800 outline-none transition focus:border-navy-500 focus:bg-white focus:ring-4 focus:ring-navy-500/10";
+  const togglePasswordForm = () => {
+    if (!changingPassword) setPasswordFormKey((k) => k + 1);
+    setChangingPassword((v) => !v);
+  };
 
   return (
     <>
@@ -141,30 +315,61 @@ export default function SettingsPage() {
             title="Language"
             desc="The language used across TravelPerk."
             control={
-              <select
+              <Select
                 value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className={selectClass}
-              >
-                {["English", "বাংলা", "Español", "Français"].map((l) => (
-                  <option key={l}>{l}</option>
-                ))}
-              </select>
+                onChange={setLanguage}
+                align="right"
+                variant="field"
+                options={[
+                  { value: "English", label: "English", lead: "🇬🇧" },
+                  {
+                    value: "বাংলা",
+                    label: "বাংলা",
+                    hint: "Bangla",
+                    lead: "🇧🇩",
+                  },
+                  {
+                    value: "Español",
+                    label: "Español",
+                    hint: "Spanish",
+                    lead: "🇪🇸",
+                  },
+                  {
+                    value: "Français",
+                    label: "Français",
+                    hint: "French",
+                    lead: "🇫🇷",
+                  },
+                ]}
+              />
             }
           />
           <Row
             title="Currency"
             desc="Prices are shown in this currency."
             control={
-              <select
+              <Select
                 value={currency}
-                onChange={(e) => setCurrency(e.target.value)}
-                className={selectClass}
-              >
-                {["USD", "EUR", "GBP", "BDT"].map((c) => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
+                onChange={setCurrency}
+                align="right"
+                variant="field"
+                options={[
+                  { value: "USD", label: "USD", hint: "US Dollar", lead: "$" },
+                  { value: "EUR", label: "EUR", hint: "Euro", lead: "€" },
+                  {
+                    value: "GBP",
+                    label: "GBP",
+                    hint: "Pound Sterling",
+                    lead: "£",
+                  },
+                  {
+                    value: "BDT",
+                    label: "BDT",
+                    hint: "Bangladeshi Taka",
+                    lead: "৳",
+                  },
+                ]}
+              />
             }
           />
         </Section>
@@ -173,21 +378,50 @@ export default function SettingsPage() {
         <Section title="Security">
           <Row
             title="Password"
-            desc="Change the password used to sign in."
+            desc={
+              changingPassword
+                ? "Enter your current password, then pick a new one."
+                : "Change the password used to sign in."
+            }
             control={
-              <Link
-                href="/forgot-password"
-                className="flex items-center gap-1.5 rounded-full border border-navy-200 px-4 py-2 text-xs font-semibold text-navy-700 transition hover:bg-navy-50"
+              <button
+                type="button"
+                onClick={togglePasswordForm}
+                aria-expanded={changingPassword}
+                aria-controls="password-form"
+                className={`flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-semibold transition ${
+                  changingPassword
+                    ? "border-navy-500 bg-navy-500 text-white hover:bg-navy-600"
+                    : "border-navy-200 text-navy-700 hover:bg-navy-50"
+                }`}
               >
                 <LockIcon className="h-4 w-4" />
-                Change
-              </Link>
+                {changingPassword ? "Cancel" : "Change"}
+              </button>
             }
           />
+
+          {/* grid-rows 0fr → 1fr animates the real height, so it slides open. */}
+          <div
+            inert={!changingPassword}
+            aria-hidden={!changingPassword}
+            className={`grid transition-all duration-300 ease-out ${
+              changingPassword
+                ? "grid-rows-[1fr] opacity-100"
+                : "grid-rows-[0fr] opacity-0"
+            }`}
+          >
+            <div className="overflow-hidden">
+              <ChangePassword
+                key={passwordFormKey}
+                onDone={() => setChangingPassword(false)}
+              />
+            </div>
+          </div>
         </Section>
 
         {/* Danger zone */}
-        <section className="rounded-2xl border border-red-200 bg-red-50/40 p-6">
+        <section className="rounded-2xl border border-red-200 bg-red-50/40 p-4 sm:p-6">
           <h3 className="text-base font-bold text-red-600">Danger zone</h3>
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -203,7 +437,7 @@ export default function SettingsPage() {
                 logout();
                 router.push("/");
               }}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-red-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-600"
+              className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-red-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-600 sm:w-auto sm:py-2.5"
             >
               <LogoutIcon className="h-4 w-4" />
               Log out
