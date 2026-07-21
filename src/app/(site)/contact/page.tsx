@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/site/PageHero";
 import ContactForm from "@/components/site/ContactForm";
 import { Icon } from "@/components/Icons";
 import { contactChannels } from "@/temp/contact";
 import { airplaneImage } from "@/temp/flights";
 
-export const metadata: Metadata = {
-  title: "Contact Us — TravelPerk",
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Us",
   description:
     "Get in touch with the TravelPerk team. We're here to help you plan the perfect trip, 24/7.",
-};
+  path: "/contact",
+  keywords: ["contact travel agency", "travel support", "customer service"],
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])} />
+
       <PageHero
         eyebrow="We're Here To Help"
         title="Get In Touch"

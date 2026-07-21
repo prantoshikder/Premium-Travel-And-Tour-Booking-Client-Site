@@ -1,6 +1,7 @@
 "use client";
 
-import { tourCategoryNames, tourList } from "@/temp/tours";
+import { tourCategoryNames, tourList, tourSlug } from "@/temp/tours";
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { ClockIcon, PinIcon, SearchIcon } from "../Icons";
@@ -98,8 +99,9 @@ export default function ToursExplorer() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((t) => (
-          <article
+          <Link
             key={t.id}
+            href={`/tours/${tourSlug(t.title)}`}
             className="group flex flex-col overflow-hidden rounded-2xl border border-navy-50 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card"
           >
             <div className="relative aspect-16/10 overflow-hidden">
@@ -142,12 +144,12 @@ export default function ToursExplorer() {
                     ${t.price.toLocaleString()}
                   </span>
                 </p>
-                <button className="rounded-full bg-navy-500 px-5 py-2 text-xs font-semibold text-white transition hover:bg-navy-600">
-                  Book Now
-                </button>
+                <span className="rounded-full bg-navy-500 px-5 py-2 text-xs font-semibold text-white transition group-hover:bg-navy-600">
+                  View details
+                </span>
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
     </>

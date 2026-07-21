@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import AuthGuard from "@/components/auth/AuthGuard";
 import CheckoutClient from "@/components/site/CheckoutClient";
 
-export const metadata: Metadata = {
-  title: "Checkout — TravelPerk",
+export const metadata: Metadata = pageMetadata({
+  title: "Checkout",
   description: "Review your booking and complete payment securely.",
-};
+  path: "/checkout",
+  noIndex: true,
+});
 
 export default function CheckoutPage() {
   return (

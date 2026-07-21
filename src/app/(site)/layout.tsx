@@ -9,7 +9,9 @@ export default function SiteLayout({
   return (
     <div className="overflow-x-hidden">
       <Navbar />
-      {children}
+      {/* One <main> per page keeps the landmark structure valid for crawlers
+          and screen readers. */}
+      <main>{children}</main>
       <Footer />
     </div>
   );

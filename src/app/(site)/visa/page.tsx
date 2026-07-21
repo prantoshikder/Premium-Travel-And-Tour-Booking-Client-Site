@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import FaqSection from "@/components/site/FaqSection";
+import { visaFaqs } from "@/temp/faq";
 import PageHero from "@/components/site/PageHero";
 import { Icon } from "@/components/Icons";
 import { heroImage } from "@/temp/home";
 import { visaSteps, visaCountries } from "@/temp/visa";
 
-export const metadata: Metadata = {
-  title: "Visa Assistance — TravelPerk",
+export const metadata: Metadata = pageMetadata({
+  title: "Visa Assistance",
   description:
     "Fast, hassle-free visa assistance for popular destinations. Transparent pricing and expert support.",
-};
+  path: "/visa",
+  keywords: ["visa assistance", "tourist visa", "visa processing", "travel visa"],
+});
 
 export default function VisaPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Visa", path: "/visa" }])} />
+
       <PageHero
         eyebrow="Travel Made Easy"
         title="Visa Assistance"
@@ -96,6 +104,7 @@ export default function VisaPage() {
           </div>
         </div>
       </section>
+      <FaqSection title="Visa assistance questions" faqs={visaFaqs} />
     </>
   );
 }

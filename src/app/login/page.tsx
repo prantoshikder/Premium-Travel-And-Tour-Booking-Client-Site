@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import AuthShell from "@/components/auth/AuthShell";
 import LoginForm from "@/components/auth/LoginForm";
 
-export const metadata: Metadata = {
-  title: "Sign In — TravelPerk",
-  description:
-    "Sign in to your TravelPerk account with your email or phone number to manage bookings and unlock exclusive deals.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Sign In",
+  description: "Sign in to your TravelPerk account to manage bookings and unlock exclusive deals.",
+  path: "/login",
+  noIndex: true,
+});
 
 export default function LoginPage() {
   return (

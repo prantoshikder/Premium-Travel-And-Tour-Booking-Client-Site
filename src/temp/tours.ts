@@ -1,5 +1,6 @@
 /* /tours — categories and the tour listings. */
 
+import { slugify } from "@/lib/slug";
 import { img } from "./image";
 
 export const tourCategoryNames = [
@@ -37,3 +38,11 @@ export const tourList: {
   { id: "t8", title: "Singapore City Explorer", location: "Singapore", image: img("1525625293386-3f8f99389edd"), duration: "4 Days", category: "City", rating: 4.7, reviews: 289, price: 899 },
   { id: "t9", title: "Maldives Overwater Retreat", location: "Malé, Maldives", image: img("1514282401047-d79a71a590e8"), duration: "5 Days", category: "Luxury", rating: 5.0, reviews: 402, price: 2650, badge: "Bestseller" },
 ];
+
+/** Detail-page URL for a tour, derived from its title so links stay readable. */
+export const tourSlug = (title: string) => slugify(title);
+
+export const tourBySlug = (slug: string) =>
+  tourList.find((t) => tourSlug(t.title) === slug);
+
+export const tourSlugs = () => tourList.map((t) => tourSlug(t.title));

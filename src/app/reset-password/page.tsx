@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import AuthShell from "@/components/auth/AuthShell";
 import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 
-export const metadata: Metadata = {
-  title: "Reset Password — TravelPerk",
-  description: "Enter your verification code and set a new password for your TravelPerk account.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Reset Password",
+  description: "Choose a new password for your TravelPerk account.",
+  path: "/reset-password",
+  noIndex: true,
+});
 
 export default function ResetPasswordPage() {
   return (

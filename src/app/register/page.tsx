@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import AuthShell from "@/components/auth/AuthShell";
 import RegisterForm from "@/components/auth/RegisterForm";
 
-export const metadata: Metadata = {
-  title: "Create Account — TravelPerk",
-  description:
-    "Create your free TravelPerk account with your email or phone number and start booking trips with exclusive deals.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Create Account",
+  description: "Create your free TravelPerk account and start booking trips with exclusive deals.",
+  path: "/register",
+  noIndex: true,
+});
 
 export default function RegisterPage() {
   return (
