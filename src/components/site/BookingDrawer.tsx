@@ -255,7 +255,7 @@ function BookingPanel({
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full rounded-xl border border-navy-100 bg-white px-4 py-2.5 text-sm font-semibold text-navy-800 outline-none transition focus:border-navy-500 focus:ring-4 focus:ring-navy-500/10"
+                className="w-full rounded-xl border border-navy-100 bg-white px-4 py-2.5 text-sm font-semibold text-navy-800 transition outline-none focus:border-navy-500 focus:ring-4 focus:ring-navy-500/10"
               />
 
               <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-navy-100 bg-white p-3">

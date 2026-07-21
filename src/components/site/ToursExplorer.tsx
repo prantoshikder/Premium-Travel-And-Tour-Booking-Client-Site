@@ -45,21 +45,21 @@ export default function ToursExplorer() {
         </div>
 
         <div className="group relative w-full shrink-0 lg:w-72">
-          <SearchIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted transition-colors group-focus-within:text-navy-500" />
+          <SearchIcon className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-muted transition-colors group-focus-within:text-navy-500" />
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search tours or destinations"
             aria-label="Search tours"
-            className="w-full rounded-full border border-navy-100 bg-white py-2.5 pl-11 pr-10 text-sm font-medium text-navy-800 shadow-soft outline-none transition-all placeholder:font-normal placeholder:text-muted hover:border-navy-200 focus:border-navy-500 focus:ring-4 focus:ring-navy-500/10 [&::-webkit-search-cancel-button]:hidden"
+            className="w-full rounded-full border border-navy-100 bg-white py-2.5 pr-10 pl-11 text-sm font-medium text-navy-800 shadow-soft transition-all outline-none placeholder:font-normal placeholder:text-muted hover:border-navy-200 focus:border-navy-500 focus:ring-4 focus:ring-navy-500/10 [&::-webkit-search-cancel-button]:hidden"
           />
           {query && (
             <button
               type="button"
               onClick={() => setQuery("")}
               aria-label="Clear search"
-              className="absolute right-3 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-navy-50 text-navy-600 transition hover:bg-navy-100"
+              className="absolute top-1/2 right-3 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-navy-50 text-navy-600 transition hover:bg-navy-100"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -112,11 +112,11 @@ export default function ToursExplorer() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition duration-500 group-hover:scale-105"
               />
-              <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-bold text-navy-700 shadow">
+              <span className="absolute top-3 left-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-bold text-navy-700 shadow">
                 {t.category}
               </span>
               {t.badge && (
-                <span className="absolute right-3 top-3 rounded-full bg-gold-500 px-2.5 py-1 text-xs font-bold text-navy-800 shadow">
+                <span className="absolute top-3 right-3 rounded-full bg-gold-500 px-2.5 py-1 text-xs font-bold text-navy-800 shadow">
                   {t.badge}
                 </span>
               )}

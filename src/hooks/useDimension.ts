@@ -90,7 +90,12 @@ export function useDimension(): Dimension {
   return {
     width: w,
     height: h,
-    device: w >= BREAKPOINTS.lg ? "desktop" : w >= BREAKPOINTS.md ? "tablet" : "mobile",
+    device:
+      w >= BREAKPOINTS.lg
+        ? "desktop"
+        : w >= BREAKPOINTS.md
+          ? "tablet"
+          : "mobile",
     breakpoint: breakpointFor(w),
     isMobile: ready && w < BREAKPOINTS.md,
     isTablet: ready && w >= BREAKPOINTS.md && w < BREAKPOINTS.lg,

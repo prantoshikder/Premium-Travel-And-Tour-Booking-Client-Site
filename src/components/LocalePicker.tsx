@@ -43,7 +43,8 @@ export default function LocalePicker({
   useEffect(() => {
     if (!open) return;
     const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -97,7 +98,9 @@ export default function LocalePicker({
                 {l.label}
               </span>
             </span>
-            {selected && <CheckIcon className="h-4 w-4 shrink-0 text-navy-500" />}
+            {selected && (
+              <CheckIcon className="h-4 w-4 shrink-0 text-navy-500" />
+            )}
           </button>
         );
       })}
@@ -108,7 +111,7 @@ export default function LocalePicker({
   if (inline) {
     return (
       <div className="overflow-hidden rounded-2xl bg-white">
-        <p className="border-b border-navy-50 bg-navy-50/50 px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-muted">
+        <p className="border-b border-navy-50 bg-navy-50/50 px-4 py-2.5 text-[11px] font-bold tracking-wider text-muted uppercase">
           Language
         </p>
         <div className="max-h-64 overflow-y-auto">{options}</div>

@@ -52,7 +52,10 @@ export default function OtpInput({
 
   const handlePaste = (e: React.ClipboardEvent) => {
     e.preventDefault();
-    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, length);
+    const pasted = e.clipboardData
+      .getData("text")
+      .replace(/\D/g, "")
+      .slice(0, length);
     if (!pasted) return;
     onChange(pasted);
     refs.current[Math.min(pasted.length, length - 1)]?.focus();
@@ -73,7 +76,7 @@ export default function OtpInput({
           onChange={(e) => handleChange(i, e.target.value)}
           onKeyDown={(e) => handleKeyDown(i, e)}
           aria-label={`Digit ${i + 1}`}
-          className={`h-12 w-full min-w-0 rounded-xl border bg-navy-50/40 text-center text-lg font-bold text-navy-800 outline-none transition focus:bg-white focus:ring-4 sm:h-14 ${
+          className={`h-12 w-full min-w-0 rounded-xl border bg-navy-50/40 text-center text-lg font-bold text-navy-800 transition outline-none focus:bg-white focus:ring-4 sm:h-14 ${
             error
               ? "border-red-400 focus:border-red-500 focus:ring-red-500/10"
               : "border-navy-100 focus:border-navy-500 focus:ring-navy-500/10"

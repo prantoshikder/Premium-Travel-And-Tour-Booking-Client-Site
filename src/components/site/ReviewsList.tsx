@@ -72,7 +72,8 @@ export default function ReviewsList() {
       </div>
 
       <p className="mb-4 text-sm text-muted">
-        Showing <span className="font-semibold text-navy-800">{list.length}</span>{" "}
+        Showing{" "}
+        <span className="font-semibold text-navy-800">{list.length}</span>{" "}
         {list.length === 1 ? "review" : "reviews"}
         {trip !== "All" && ` for ${trip.toLowerCase()}`}
       </p>
@@ -109,7 +110,9 @@ function ReviewCard({ review }: { review: Review }) {
           />
         </span>
         <div className="min-w-0">
-          <p className="truncate text-sm font-bold text-navy-800">{review.name}</p>
+          <p className="truncate text-sm font-bold text-navy-800">
+            {review.name}
+          </p>
           <p className="truncate text-xs text-muted">{review.country}</p>
         </div>
         <span className="ml-auto shrink-0 rounded-full bg-navy-50 px-2.5 py-1 text-[11px] font-bold text-navy-600">
@@ -128,7 +131,9 @@ function ReviewCard({ review }: { review: Review }) {
             />
           ))}
         </span>
-        <span className="text-[11px] text-muted">{formatDate(review.date)}</span>
+        <span className="text-[11px] text-muted">
+          {formatDate(review.date)}
+        </span>
       </div>
 
       <h3 className="mt-3 text-sm font-bold text-navy-800">{review.title}</h3>
@@ -137,7 +142,10 @@ function ReviewCard({ review }: { review: Review }) {
       </blockquote>
 
       <p className="mt-4 border-t border-navy-50 pt-3 text-xs text-muted">
-        Trip to <span className="font-semibold text-navy-700">{review.destination}</span>
+        Trip to{" "}
+        <span className="font-semibold text-navy-700">
+          {review.destination}
+        </span>
       </p>
     </article>
   );

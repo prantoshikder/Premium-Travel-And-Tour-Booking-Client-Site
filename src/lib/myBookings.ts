@@ -25,7 +25,10 @@ export function loadChanges(): BookingChanges {
   }
 }
 
-export function saveChange(id: string, change: Omit<BookingChange, "updatedAt">) {
+export function saveChange(
+  id: string,
+  change: Omit<BookingChange, "updatedAt">
+) {
   try {
     const all = loadChanges();
     const next: BookingChanges = {
@@ -43,8 +46,12 @@ export function saveChange(id: string, change: Omit<BookingChange, "updatedAt">)
 export function refundPolicy(dates: string) {
   const start = new Date(dates.split("–")[0]?.trim() ?? dates);
   const days = Math.ceil((start.getTime() - Date.now()) / 86_400_000);
-  if (Number.isNaN(days)) return { label: "Refund calculated on request", full: false };
+  if (Number.isNaN(days))
+    return { label: "Refund calculated on request", full: false };
   if (days >= 14)
-    return { label: `Free cancellation — ${days} days before departure`, full: true };
+    return {
+      label: `Free cancellation — ${days} days before departure`,
+      full: true,
+    };
   return { label: `Within 14 days of departure — 50% refund`, full: false };
 }

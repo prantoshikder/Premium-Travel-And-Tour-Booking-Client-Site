@@ -113,7 +113,7 @@ function ChangePassword({ onDone }: { onDone: () => void }) {
 
   if (status === "saved") {
     return (
-      <div className="mt-4 flex items-center gap-2 rounded-xl bg-teal-500/10 px-4 py-3 text-sm font-semibold text-teal-600 animate-fade-up [animation-duration:200ms]">
+      <div className="animate-fade-up mt-4 flex items-center gap-2 rounded-xl bg-teal-500/10 px-4 py-3 text-sm font-semibold text-teal-600 [animation-duration:200ms]">
         <CheckIcon className="h-4 w-4" strokeWidth={2.5} />
         Password updated. Use it the next time you sign in.
       </div>
@@ -211,7 +211,10 @@ function PasswordField({
 }) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-navy-800">
+      <label
+        htmlFor={id}
+        className="mb-1.5 block text-xs font-semibold text-navy-800"
+      >
         {label}
       </label>
       <input
@@ -222,7 +225,7 @@ function PasswordField({
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
         placeholder="••••••••"
-        className={`w-full rounded-xl border bg-white px-4 py-2.5 text-sm text-navy-800 outline-none transition placeholder:text-muted/60 focus:ring-4 ${
+        className={`w-full rounded-xl border bg-white px-4 py-2.5 text-sm text-navy-800 transition outline-none placeholder:text-muted/60 focus:ring-4 ${
           error
             ? "border-red-400 focus:border-red-500 focus:ring-red-500/10"
             : "border-navy-100 focus:border-navy-500 focus:ring-navy-500/10"

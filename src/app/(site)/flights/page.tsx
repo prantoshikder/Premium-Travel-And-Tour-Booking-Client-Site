@@ -13,13 +13,20 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Search and compare cheap flights to destinations worldwide. Best price guarantee on every booking.",
   path: "/flights",
-  keywords: ["cheap flights", "flight booking", "compare airfares", "international flights"],
+  keywords: [
+    "cheap flights",
+    "flight booking",
+    "compare airfares",
+    "international flights",
+  ],
 });
 
 export default function FlightsPage() {
   return (
     <>
-      <JsonLd data={breadcrumbSchema([{ name: "Flights", path: "/flights" }])} />
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Flights", path: "/flights" }])}
+      />
 
       <PageHero
         eyebrow="Fly Smarter"

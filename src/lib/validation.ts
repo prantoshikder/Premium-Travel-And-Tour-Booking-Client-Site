@@ -82,7 +82,10 @@ export function passwordStrength(value: string): Strength {
 }
 
 /** Derive a friendly display name when we only have an email/phone (e.g. login). */
-export function nameFromIdentifier(value: string, mode: "email" | "phone"): string {
+export function nameFromIdentifier(
+  value: string,
+  mode: "email" | "phone"
+): string {
   if (mode === "email") {
     const local = value.split("@")[0] || "Traveler";
     const cleaned = local.replace(/[._-]+/g, " ").trim();

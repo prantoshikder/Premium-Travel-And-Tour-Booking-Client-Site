@@ -44,7 +44,7 @@ export default function AuthShell({
           </Link>
 
           <div className="max-w-md">
-            <h2 className="text-3xl font-extrabold leading-tight text-white xl:text-4xl">
+            <h2 className="text-3xl leading-tight font-extrabold text-white xl:text-4xl">
               Your next journey begins here.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
@@ -54,7 +54,10 @@ export default function AuthShell({
 
             <ul className="mt-8 space-y-3.5">
               {authHighlights.map((h) => (
-                <li key={h} className="flex items-start gap-3 text-sm text-white/85">
+                <li
+                  key={h}
+                  className="flex items-start gap-3 text-sm text-white/85"
+                >
                   <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold-500 text-navy-800">
                     <CheckIcon className="h-3.5 w-3.5" strokeWidth={2.5} />
                   </span>
@@ -114,7 +117,7 @@ export default function AuthShell({
               {/* Divider */}
               <div className="my-6 flex items-center gap-4">
                 <span className="h-px flex-1 bg-navy-100" />
-                <span className="text-xs font-medium uppercase tracking-wide text-muted">
+                <span className="text-xs font-medium tracking-wide text-muted uppercase">
                   or continue with email
                 </span>
                 <span className="h-px flex-1 bg-navy-100" />

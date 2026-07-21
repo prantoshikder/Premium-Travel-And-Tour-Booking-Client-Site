@@ -61,7 +61,10 @@ export default function CheckoutClient() {
   const activeFields: { key: string; field: PayField }[] = useMemo(
     () => [
       ...CONTACT_FIELDS.map((f) => ({ key: `contact.${f.name}`, field: f })),
-      ...active.fields.map((f) => ({ key: `${active.key}.${f.name}`, field: f })),
+      ...active.fields.map((f) => ({
+        key: `${active.key}.${f.name}`,
+        field: f,
+      })),
     ],
     [active]
   );
@@ -120,7 +123,9 @@ export default function CheckoutClient() {
   if (!booking) {
     return (
       <div className="rounded-2xl border border-dashed border-navy-100 bg-white py-20 text-center">
-        <p className="text-lg font-bold text-navy-800">Nothing to pay for yet</p>
+        <p className="text-lg font-bold text-navy-800">
+          Nothing to pay for yet
+        </p>
         <p className="mt-1 text-sm text-muted">
           Pick a flight, tour or deal to start a booking.
         </p>
@@ -214,10 +219,14 @@ export default function CheckoutClient() {
               subtitle="Pick one — you only fill in what that method needs."
             />
 
-            <div className="mt-5 space-y-5" role="radiogroup" aria-label="Payment method">
+            <div
+              className="mt-5 space-y-5"
+              role="radiogroup"
+              aria-label="Payment method"
+            >
               {PAYMENT_GROUPS.map((group) => (
                 <div key={group.title}>
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted">
+                  <p className="mb-2 text-[11px] font-bold tracking-wider text-muted uppercase">
                     {group.title}
                   </p>
                   <div className="grid gap-2.5 sm:grid-cols-2">
@@ -277,7 +286,8 @@ export default function CheckoutClient() {
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {active.fields.map((f) => {
                   const key = `${active.key}.${f.name}`;
-                  const isCardNumber = active.key === "card" && f.name === "number";
+                  const isCardNumber =
+                    active.key === "card" && f.name === "number";
                   const brand = isCardNumber
                     ? cardBrand(values[key] ?? "")
                     : "unknown";
@@ -332,7 +342,7 @@ export default function CheckoutClient() {
 
         {/* Order summary */}
         <aside className="h-fit rounded-2xl border border-navy-50 bg-white p-6 shadow-soft lg:sticky lg:top-24">
-          <h2 className="text-sm font-extrabold uppercase tracking-wide text-navy-800">
+          <h2 className="text-sm font-extrabold tracking-wide text-navy-800 uppercase">
             Order summary
           </h2>
 
@@ -391,7 +401,9 @@ export default function CheckoutClient() {
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-muted">Rooms</span>
-                <span className="font-semibold text-navy-800">{booking.rooms}</span>
+                <span className="font-semibold text-navy-800">
+                  {booking.rooms}
+                </span>
               </div>
               {booking.savedAmount ? (
                 <p className="inline-block rounded-md bg-gold-500/20 px-2 py-1 text-[11px] font-bold text-gold-600">
@@ -418,31 +430,31 @@ export default function CheckoutClient() {
           )}
 
           {booking.kind === "flight" && (
-          <div className="mt-4 flex items-center justify-between rounded-xl bg-navy-50/50 p-3">
-            <div>
-              <p className="text-base font-extrabold text-navy-800">
-                {booking.depart}
-              </p>
-              <p className="text-[11px] text-muted">{booking.from}</p>
-            </div>
-            <div className="flex flex-1 flex-col items-center px-2">
-              <span className="flex items-center gap-1 text-[10px] text-muted">
-                <ClockIcon className="h-3 w-3" />
-                {booking.duration}
-              </span>
-              <div className="my-1 flex w-full items-center gap-1">
-                <span className="h-px flex-1 bg-navy-100" />
-                <PlaneIcon className="h-3 w-3 text-navy-400" />
-                <span className="h-px flex-1 bg-navy-100" />
+            <div className="mt-4 flex items-center justify-between rounded-xl bg-navy-50/50 p-3">
+              <div>
+                <p className="text-base font-extrabold text-navy-800">
+                  {booking.depart}
+                </p>
+                <p className="text-[11px] text-muted">{booking.from}</p>
+              </div>
+              <div className="flex flex-1 flex-col items-center px-2">
+                <span className="flex items-center gap-1 text-[10px] text-muted">
+                  <ClockIcon className="h-3 w-3" />
+                  {booking.duration}
+                </span>
+                <div className="my-1 flex w-full items-center gap-1">
+                  <span className="h-px flex-1 bg-navy-100" />
+                  <PlaneIcon className="text-navy-400 h-3 w-3" />
+                  <span className="h-px flex-1 bg-navy-100" />
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-base font-extrabold text-navy-800">
+                  {booking.arrive}
+                </p>
+                <p className="text-[11px] text-muted">{booking.to}</p>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-base font-extrabold text-navy-800">
-                {booking.arrive}
-              </p>
-              <p className="text-[11px] text-muted">{booking.to}</p>
-            </div>
-          </div>
           )}
 
           {booking.kind === "flight" && (
@@ -478,7 +490,9 @@ export default function CheckoutClient() {
             </div>
             {booking.seatFee > 0 && (
               <div className="flex justify-between text-navy-700">
-                <dt>{booking.kind === "flight" ? "Seat upgrades" : "Add-ons"}</dt>
+                <dt>
+                  {booking.kind === "flight" ? "Seat upgrades" : "Add-ons"}
+                </dt>
                 <dd className="font-semibold">
                   ${booking.seatFee.toLocaleString()}
                 </dd>
@@ -546,9 +560,7 @@ function Stepper() {
           <li key={s} className="flex items-center gap-2">
             <span
               className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 ${
-                done
-                  ? "bg-teal-500/10 text-teal-600"
-                  : "bg-navy-500 text-white"
+                done ? "bg-teal-500/10 text-teal-600" : "bg-navy-500 text-white"
               }`}
             >
               {done ? (
@@ -633,14 +645,14 @@ function Field({
           maxLength={field.maxLength}
           aria-invalid={invalid}
           aria-describedby={field.help || error ? helpId : undefined}
-          className={`w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-navy-800 outline-none transition placeholder:text-muted/60 focus:ring-4 ${
+          className={`w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-navy-800 transition outline-none placeholder:text-muted/60 focus:ring-4 ${
             invalid
               ? "border-red-400 focus:border-red-500 focus:ring-red-500/10"
               : "border-navy-100 focus:border-navy-500 focus:ring-navy-500/10"
           } ${adornment ? "pr-24" : ""}`}
         />
         {adornment && (
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded-md bg-navy-50 px-2 py-1 text-[10px] font-bold text-navy-600">
+          <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 rounded-md bg-navy-50 px-2 py-1 text-[10px] font-bold text-navy-600">
             {adornment}
           </span>
         )}

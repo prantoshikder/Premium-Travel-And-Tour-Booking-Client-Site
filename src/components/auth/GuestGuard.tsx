@@ -24,7 +24,11 @@ function FullScreenLoader() {
  * for someone already signed in, so send them on instead. Honours `?next=` so
  * a half-finished flow (booking → login) still lands where it meant to.
  */
-export default function GuestGuard({ children }: { children: React.ReactNode }) {
+export default function GuestGuard({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <Suspense fallback={<FullScreenLoader />}>
       <RedirectIfSignedIn>{children}</RedirectIfSignedIn>

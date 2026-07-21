@@ -42,7 +42,9 @@ export default function HeroBackground({
   const paused = usePrefersReducedMotion();
 
   useEffect(() => {
-    const videos = [aRef.current, bRef.current].filter(Boolean) as HTMLVideoElement[];
+    const videos = [aRef.current, bRef.current].filter(
+      Boolean
+    ) as HTMLVideoElement[];
     for (const video of videos) {
       if (paused) {
         video.pause();

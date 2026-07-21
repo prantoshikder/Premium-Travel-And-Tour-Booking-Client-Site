@@ -19,7 +19,21 @@ export const metadata: Metadata = pageMetadata({
 export default function ActivitiesPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Activities", path: "/activities" }]), itemListSchema("Activities and experiences", activityList.map((a) => ({ name: a.title, url: "/activities", image: a.image, price: a.price, rating: a.rating })))]} />
+      <JsonLd
+        data={[
+          breadcrumbSchema([{ name: "Activities", path: "/activities" }]),
+          itemListSchema(
+            "Activities and experiences",
+            activityList.map((a) => ({
+              name: a.title,
+              url: "/activities",
+              image: a.image,
+              price: a.price,
+              rating: a.rating,
+            }))
+          ),
+        ]}
+      />
 
       <PageHero
         eyebrow="Things To Do"
@@ -30,7 +44,10 @@ export default function ActivitiesPage() {
       <section className="container-x py-12 sm:py-16">
         <ActivitiesExplorer />
       </section>
-      <FaqSection title="Booking activities with TravelPerk" faqs={activityFaqs} />
+      <FaqSection
+        title="Booking activities with TravelPerk"
+        faqs={activityFaqs}
+      />
     </>
   );
 }

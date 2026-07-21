@@ -17,7 +17,10 @@ export default function FaqSection({
   faqs: Faq[];
 }) {
   return (
-    <section className="container-x py-12 sm:py-16" aria-labelledby="faq-heading">
+    <section
+      className="container-x py-12 sm:py-16"
+      aria-labelledby="faq-heading"
+    >
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -31,10 +34,7 @@ export default function FaqSection({
       />
 
       <div className="mx-auto max-w-3xl">
-        <h2
-          id="faq-heading"
-          className="section-title text-2xl sm:text-3xl"
-        >
+        <h2 id="faq-heading" className="section-title text-2xl sm:text-3xl">
           {title}
         </h2>
         {intro && <p className="mt-2 text-sm text-muted">{intro}</p>}
@@ -58,7 +58,9 @@ export default function FaqSection({
                   </svg>
                 </span>
               </summary>
-              <p className="pb-4 text-sm leading-relaxed text-muted">{f.answer}</p>
+              <p className="pb-4 text-sm leading-relaxed text-muted">
+                {f.answer}
+              </p>
             </details>
           ))}
         </div>

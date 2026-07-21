@@ -8,5 +8,4 @@ export const authHighlights = [
   "24/7 priority travel support worldwide",
 ];
 
-
 export const authImage = img("1507525428034-b723cf961d3e", 900, 1300);

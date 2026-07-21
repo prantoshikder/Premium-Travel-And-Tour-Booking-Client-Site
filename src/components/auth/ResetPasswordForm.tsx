@@ -45,7 +45,9 @@ export default function ResetPasswordForm() {
         <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-teal-500 text-white">
           <CheckIcon className="h-6 w-6" strokeWidth={2.5} />
         </span>
-        <h3 className="mt-4 text-lg font-bold text-navy-800">Password reset!</h3>
+        <h3 className="mt-4 text-lg font-bold text-navy-800">
+          Password reset!
+        </h3>
         <p className="mt-1 text-sm text-muted">
           Your password has been updated. You can now sign in with your new
           password.
@@ -76,7 +78,9 @@ export default function ResetPasswordForm() {
           error={!!errors.otp}
         />
         {errors.otp && (
-          <p className="mt-1.5 text-xs font-medium text-red-500">{errors.otp}</p>
+          <p className="mt-1.5 text-xs font-medium text-red-500">
+            {errors.otp}
+          </p>
         )}
       </div>
 
@@ -87,7 +91,8 @@ export default function ResetPasswordForm() {
           value={password}
           onChange={(v) => {
             setPassword(v);
-            if (errors.password) setErrors((p) => ({ ...p, password: undefined }));
+            if (errors.password)
+              setErrors((p) => ({ ...p, password: undefined }));
           }}
           placeholder="Create a new password"
           autoComplete="new-password"

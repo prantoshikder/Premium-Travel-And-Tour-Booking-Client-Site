@@ -109,14 +109,17 @@ export default async function DestinationPage({ params }: Params) {
               Home
             </Link>
             <span>/</span>
-            <Link href="/destinations" className="transition hover:text-gold-400">
+            <Link
+              href="/destinations"
+              className="transition hover:text-gold-400"
+            >
               Destinations
             </Link>
             <span>/</span>
             <span className="text-white/90">{d.name}</span>
           </nav>
 
-          <p className="text-xs font-bold uppercase tracking-[0.08em] text-gold-400">
+          <p className="text-xs font-bold tracking-[0.08em] text-gold-400 uppercase">
             {d.country}
           </p>
           <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
@@ -158,12 +161,14 @@ export default async function DestinationPage({ params }: Params) {
         </div>
 
         <aside className="h-fit rounded-2xl border border-navy-50 bg-white p-6 shadow-soft">
-          <h2 className="text-sm font-extrabold uppercase tracking-wide text-navy-800">
+          <h2 className="text-sm font-extrabold tracking-wide text-navy-800 uppercase">
             Trip essentials
           </h2>
           <dl className="mt-4 space-y-3 text-sm">
             <div>
-              <dt className="text-xs font-semibold text-muted">Best time to visit</dt>
+              <dt className="text-xs font-semibold text-muted">
+                Best time to visit
+              </dt>
               <dd className="font-semibold text-navy-800">{d.bestTime}</dd>
             </div>
             <div>
@@ -218,7 +223,9 @@ export default async function DestinationPage({ params }: Params) {
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-base font-bold text-navy-800">{t.title}</h3>
+                    <h3 className="text-base font-bold text-navy-800">
+                      {t.title}
+                    </h3>
                     <Rating value={t.rating} />
                   </div>
                   <p className="mt-1 flex items-center gap-1.5 text-xs text-muted">
@@ -259,7 +266,9 @@ export default async function DestinationPage({ params }: Params) {
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-base font-bold text-navy-800">{h.name}</h3>
+                    <h3 className="text-base font-bold text-navy-800">
+                      {h.name}
+                    </h3>
                     <Rating value={h.rating} />
                   </div>
                   <p className="mt-1 text-xs text-muted">{h.location}</p>

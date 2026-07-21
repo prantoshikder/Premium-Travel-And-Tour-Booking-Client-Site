@@ -11,7 +11,9 @@ export default function HeroStats() {
               <Icon name={s.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
             </span>
             <div className="min-w-0">
-              <p className="text-xl font-extrabold text-navy-800 sm:text-2xl">{s.value}</p>
+              <p className="text-xl font-extrabold text-navy-800 sm:text-2xl">
+                {s.value}
+              </p>
               <p className="truncate text-xs text-muted">{s.label}</p>
             </div>
           </div>

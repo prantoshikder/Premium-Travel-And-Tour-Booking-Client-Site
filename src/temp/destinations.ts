@@ -132,7 +132,10 @@ export const destinationBySlug = (slug: string) =>
 export const destinationSlugs = () => destinations.map((d) => d.slug);
 
 /** True when a listing's location belongs to this destination. */
-export const matchesDestination = (destination: Destination, location: string) =>
+export const matchesDestination = (
+  destination: Destination,
+  location: string
+) =>
   destination.match.some((needle) =>
     location.toLowerCase().includes(needle.toLowerCase())
   );

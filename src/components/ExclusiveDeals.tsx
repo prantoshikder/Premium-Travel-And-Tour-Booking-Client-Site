@@ -28,7 +28,7 @@ export default function ExclusiveDeals() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
-                <span className="absolute left-3 top-3 rounded-md bg-gold-500 px-2.5 py-1 text-xs font-bold text-navy-800 shadow">
+                <span className="absolute top-3 left-3 rounded-md bg-gold-500 px-2.5 py-1 text-xs font-bold text-navy-800 shadow">
                   Save {d.save}
                 </span>
               </div>

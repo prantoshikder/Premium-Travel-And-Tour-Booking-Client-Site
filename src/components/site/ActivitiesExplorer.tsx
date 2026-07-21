@@ -45,13 +45,13 @@ export default function ActivitiesExplorer() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover transition duration-500 group-hover:scale-105"
               />
-              <span className="absolute right-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-bold text-navy-700 shadow">
+              <span className="absolute top-3 right-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-bold text-navy-700 shadow">
                 {a.duration}
               </span>
             </div>
 
             <div className="flex flex-1 flex-col p-4">
-              <h3 className="text-sm font-bold leading-snug text-navy-800">
+              <h3 className="text-sm leading-snug font-bold text-navy-800">
                 {a.title}
               </h3>
               <p className="mt-1 flex items-center gap-1 text-xs text-muted">

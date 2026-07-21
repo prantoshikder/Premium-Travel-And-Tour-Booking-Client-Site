@@ -78,7 +78,8 @@ export default function FlightsExplorer() {
   };
 
   const list = [...flightList].sort((a, b) => {
-    if (sort === "fastest") return toMinutes(a.duration) - toMinutes(b.duration);
+    if (sort === "fastest")
+      return toMinutes(a.duration) - toMinutes(b.duration);
     if (sort === "earliest") return a.depart.localeCompare(b.depart);
     return a.price - b.price;
   });
@@ -93,8 +94,8 @@ export default function FlightsExplorer() {
     <>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-muted">
-          <span className="font-semibold text-navy-800">{list.length}</span> flights
-          · New York → Paris
+          <span className="font-semibold text-navy-800">{list.length}</span>{" "}
+          flights · New York → Paris
         </p>
         <div className="flex gap-2">
           {sorts.map((s) => (
@@ -137,30 +138,34 @@ export default function FlightsExplorer() {
             {/* Route */}
             <div className="flex flex-1 items-center justify-between gap-2">
               <div className="text-center">
-                <p className="text-lg font-extrabold text-navy-800">{f.depart}</p>
+                <p className="text-lg font-extrabold text-navy-800">
+                  {f.depart}
+                </p>
                 <p className="text-xs text-muted">{f.from}</p>
               </div>
               <div className="flex flex-1 flex-col items-center px-2">
                 <span className="text-[11px] text-muted">{f.duration}</span>
                 <div className="my-1 flex w-full items-center gap-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-navy-300" />
+                  <span className="bg-navy-300 h-1.5 w-1.5 rounded-full" />
                   <span className="h-px flex-1 bg-navy-100" />
-                  <PlaneIcon className="h-3.5 w-3.5 text-navy-400" />
+                  <PlaneIcon className="text-navy-400 h-3.5 w-3.5" />
                   <span className="h-px flex-1 bg-navy-100" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-navy-300" />
+                  <span className="bg-navy-300 h-1.5 w-1.5 rounded-full" />
                 </div>
                 <span className="text-[11px] font-medium text-teal-600">
                   {f.stops}
                 </span>
               </div>
               <div className="text-center">
-                <p className="text-lg font-extrabold text-navy-800">{f.arrive}</p>
+                <p className="text-lg font-extrabold text-navy-800">
+                  {f.arrive}
+                </p>
                 <p className="text-xs text-muted">{f.to}</p>
               </div>
             </div>
 
             {/* Price + action */}
-            <div className="flex items-center justify-between gap-3 border-t border-navy-50 pt-4 sm:w-40 sm:flex-col sm:items-end sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0">
+            <div className="flex items-center justify-between gap-3 border-t border-navy-50 pt-4 sm:w-40 sm:flex-col sm:items-end sm:border-t-0 sm:border-l sm:pt-0 sm:pl-4">
               <p className="text-xl font-extrabold text-navy-800">${f.price}</p>
               <button
                 onClick={() => openFlight(f)}
@@ -241,11 +246,11 @@ export default function FlightsExplorer() {
                       {selected.duration}
                     </span>
                     <div className="my-1 flex w-full items-center gap-1">
-                      <span className="h-1.5 w-1.5 rounded-full bg-navy-300" />
+                      <span className="bg-navy-300 h-1.5 w-1.5 rounded-full" />
                       <span className="h-px flex-1 bg-navy-100" />
-                      <PlaneIcon className="h-3.5 w-3.5 text-navy-400" />
+                      <PlaneIcon className="text-navy-400 h-3.5 w-3.5" />
                       <span className="h-px flex-1 bg-navy-100" />
-                      <span className="h-1.5 w-1.5 rounded-full bg-navy-300" />
+                      <span className="bg-navy-300 h-1.5 w-1.5 rounded-full" />
                     </div>
                     <span className="text-[11px] font-medium text-teal-600">
                       {selected.stops}

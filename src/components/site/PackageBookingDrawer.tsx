@@ -123,7 +123,13 @@ export default function PackageBookingDrawer({
         <div className="flex items-center gap-3">
           {image && (
             <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl">
-              <Image src={image} alt={title} fill sizes="56px" className="object-cover" />
+              <Image
+                src={image}
+                alt={title}
+                fill
+                sizes="56px"
+                className="object-cover"
+              />
             </span>
           )}
           <div className="min-w-0">
@@ -161,7 +167,7 @@ export default function PackageBookingDrawer({
               setDateError(undefined);
             }}
             aria-invalid={!!dateError}
-            className={`w-full rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold text-navy-800 outline-none transition focus:ring-4 ${
+            className={`w-full rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold text-navy-800 transition outline-none focus:ring-4 ${
               dateError
                 ? "border-red-400 focus:border-red-500 focus:ring-red-500/10"
                 : "border-navy-100 focus:border-navy-500 focus:ring-navy-500/10"
@@ -210,8 +216,12 @@ export default function PackageBookingDrawer({
 
         {/* Add-ons */}
         <div>
-          <p className="mb-1 text-sm font-bold text-navy-800">Add to your trip</p>
-          <p className="mb-2 text-xs text-muted">Optional — priced per traveller.</p>
+          <p className="mb-1 text-sm font-bold text-navy-800">
+            Add to your trip
+          </p>
+          <p className="mb-2 text-xs text-muted">
+            Optional — priced per traveller.
+          </p>
           <div className="space-y-2">
             {ADD_ONS.map((a) => {
               const on = picked.includes(a.name);
@@ -240,7 +250,9 @@ export default function PackageBookingDrawer({
                     <span className="block text-sm font-semibold text-navy-800">
                       {a.name}
                     </span>
-                    <span className="block text-[11px] text-muted">{a.hint}</span>
+                    <span className="block text-[11px] text-muted">
+                      {a.hint}
+                    </span>
                   </span>
                   <span className="shrink-0 text-sm font-bold text-navy-800">
                     +${a.price}
@@ -253,19 +265,24 @@ export default function PackageBookingDrawer({
 
         {/* Price */}
         <div>
-          <p className="mb-2 text-sm font-bold text-navy-800">Price breakdown</p>
+          <p className="mb-2 text-sm font-bold text-navy-800">
+            Price breakdown
+          </p>
           <dl className="space-y-2 text-sm">
             <div className="flex justify-between text-navy-700">
               <dt>
                 Package · {adults} {adults > 1 ? "adults" : "adult"}
-                {children > 0 && `, ${children} ${children > 1 ? "children" : "child"}`}
+                {children > 0 &&
+                  `, ${children} ${children > 1 ? "children" : "child"}`}
               </dt>
               <dd className="font-semibold">${baseFare.toLocaleString()}</dd>
             </div>
             {addOns.length > 0 && (
               <div className="flex justify-between text-navy-700">
                 <dt>Add-ons · {guests} travellers</dt>
-                <dd className="font-semibold">${addOnTotal.toLocaleString()}</dd>
+                <dd className="font-semibold">
+                  ${addOnTotal.toLocaleString()}
+                </dd>
               </div>
             )}
             <div className="flex justify-between text-navy-700">
@@ -274,7 +291,9 @@ export default function PackageBookingDrawer({
             </div>
             <div className="flex justify-between border-t border-navy-50 pt-2 text-navy-800">
               <dt className="font-bold">Total</dt>
-              <dd className="text-lg font-extrabold">${total.toLocaleString()}</dd>
+              <dd className="text-lg font-extrabold">
+                ${total.toLocaleString()}
+              </dd>
             </div>
           </dl>
         </div>
@@ -316,7 +335,9 @@ function Stepper({
   return (
     <div className="flex items-center justify-between gap-3 rounded-xl border border-navy-100 bg-white p-3">
       <span className="min-w-0">
-        <span className="block text-sm font-semibold text-navy-800">{label}</span>
+        <span className="block text-sm font-semibold text-navy-800">
+          {label}
+        </span>
         <span className="block text-[11px] text-muted">{hint}</span>
       </span>
       <span className="flex shrink-0 items-center gap-3">

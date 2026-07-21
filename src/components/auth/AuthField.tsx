@@ -53,7 +53,11 @@ export default function AuthField({
   const inputType = isPassword && show ? "text" : type;
 
   // In toggle mode the left icon mirrors the active field type.
-  const LeftIcon = mode ? (mode === "phone" ? PhoneIcon : MailIcon) : icons[icon];
+  const LeftIcon = mode
+    ? mode === "phone"
+      ? PhoneIcon
+      : MailIcon
+    : icons[icon];
   const hasRightSlot = isPassword || !!mode;
 
   return (
@@ -76,7 +80,7 @@ export default function AuthField({
           autoComplete={autoComplete}
           inputMode={inputMode}
           aria-invalid={!!error}
-          className={`w-full rounded-xl border bg-navy-50/40 py-3 pl-11 text-sm text-navy-800 outline-none transition placeholder:text-muted/70 focus:bg-white focus:ring-4 ${
+          className={`w-full rounded-xl border bg-navy-50/40 py-3 pl-11 text-sm text-navy-800 transition outline-none placeholder:text-muted/70 focus:bg-white focus:ring-4 ${
             hasRightSlot ? "pr-12" : "pr-4"
           } ${
             error
@@ -107,7 +111,9 @@ export default function AuthField({
             type="button"
             onClick={onToggleMode}
             title={mode === "email" ? "Use phone number" : "Use email"}
-            aria-label={mode === "email" ? "Switch to phone number" : "Switch to email"}
+            aria-label={
+              mode === "email" ? "Switch to phone number" : "Switch to email"
+            }
             className="absolute right-2.5 grid h-8 w-8 place-items-center rounded-lg text-navy-500 transition hover:bg-navy-50 hover:text-navy-700"
           >
             {mode === "email" ? (
@@ -118,7 +124,9 @@ export default function AuthField({
           </button>
         )}
       </div>
-      {error && <p className="mt-1.5 text-xs font-medium text-red-500">{error}</p>}
+      {error && (
+        <p className="mt-1.5 text-xs font-medium text-red-500">{error}</p>
+      )}
     </div>
   );
 }

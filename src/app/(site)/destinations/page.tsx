@@ -54,7 +54,9 @@ export default function DestinationsPage() {
       <section className="container-x py-12 sm:py-16">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinations.map((d) => {
-            const tours = tourList.filter((t) => matchesDestination(d, t.location));
+            const tours = tourList.filter((t) =>
+              matchesDestination(d, t.location)
+            );
             const from = tours.length
               ? Math.min(...tours.map((t) => t.price))
               : null;
@@ -84,7 +86,9 @@ export default function DestinationsPage() {
                 </div>
 
                 <div className="flex flex-1 flex-col p-5">
-                  <p className="text-sm leading-relaxed text-muted">{d.tagline}</p>
+                  <p className="text-sm leading-relaxed text-muted">
+                    {d.tagline}
+                  </p>
                   <div className="mt-auto flex items-center justify-between pt-4">
                     <p className="text-sm text-muted">
                       {tours.length} {tours.length === 1 ? "tour" : "tours"}

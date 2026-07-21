@@ -7,8 +7,15 @@ import { bookings, type BookingStatus } from "@/temp/account";
 import PageHeader from "@/components/account/PageHeader";
 import { PinIcon, StarIcon, TicketIcon } from "@/components/Icons";
 import ReviewFormDrawer from "@/components/site/ReviewFormDrawer";
-import { loadReviews, reviewFor, saveReview, type MyReview } from "@/lib/reviews";
-import BookingDrawer, { type BookingMode } from "@/components/site/BookingDrawer";
+import {
+  loadReviews,
+  reviewFor,
+  saveReview,
+  type MyReview,
+} from "@/lib/reviews";
+import BookingDrawer, {
+  type BookingMode,
+} from "@/components/site/BookingDrawer";
 import { loadChanges, saveChange, type BookingChanges } from "@/lib/myBookings";
 
 const filters: { key: BookingStatus | "all"; label: string }[] = [
@@ -34,7 +41,9 @@ export default function BookingsPage() {
   );
   const [reviewOpen, setReviewOpen] = useState(false);
   const [changes, setChanges] = useState<BookingChanges>({});
-  const [viewing, setViewing] = useState<(typeof bookings)[number] | null>(null);
+  const [viewing, setViewing] = useState<(typeof bookings)[number] | null>(
+    null
+  );
   const [viewOpen, setViewOpen] = useState(false);
   const [mode, setMode] = useState<BookingMode>("details");
 
@@ -69,7 +78,12 @@ export default function BookingsPage() {
   };
 
   const handleRequestChange = (id: string, date: string, guests: number) =>
-    setChanges(saveChange(id, { requestedDate: date || undefined, requestedGuests: guests }));
+    setChanges(
+      saveChange(id, {
+        requestedDate: date || undefined,
+        requestedGuests: guests,
+      })
+    );
 
   const handleCancel = (id: string) =>
     setChanges(saveChange(id, { status: "cancelled" }));
@@ -87,7 +101,10 @@ export default function BookingsPage() {
 
   const handleSubmit = (review: MyReview) => {
     saveReview(review);
-    setMyReviews((prev) => [review, ...prev.filter((r) => r.bookingId !== review.bookingId)]);
+    setMyReviews((prev) => [
+      review,
+      ...prev.filter((r) => r.bookingId !== review.bookingId),
+    ]);
   };
 
   return (
@@ -179,10 +196,13 @@ export default function BookingsPage() {
                 {changes[b.id]?.requestedDate && b.status !== "cancelled" && (
                   <p className="mt-3 rounded-lg bg-gold-500/15 px-3 py-2 text-xs font-medium text-gold-600">
                     Change requested to{" "}
-                    {new Date(changes[b.id].requestedDate as string).toLocaleDateString(
-                      "en-GB",
-                      { day: "2-digit", month: "short", year: "numeric" }
-                    )}{" "}
+                    {new Date(
+                      changes[b.id].requestedDate as string
+                    ).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}{" "}
                     · awaiting confirmation
                   </p>
                 )}
@@ -193,12 +213,17 @@ export default function BookingsPage() {
                   return (
                     <div className="mt-4 rounded-xl bg-navy-50/50 p-3">
                       <div className="flex items-center gap-2">
-                        <span className="flex gap-0.5" aria-label={`${mine.rating} out of 5`}>
+                        <span
+                          className="flex gap-0.5"
+                          aria-label={`${mine.rating} out of 5`}
+                        >
                           {Array.from({ length: 5 }, (_, i) => (
                             <StarIcon
                               key={i}
                               className={`h-3.5 w-3.5 ${
-                                i < mine.rating ? "text-gold-500" : "text-navy-200"
+                                i < mine.rating
+                                  ? "text-gold-500"
+                                  : "text-navy-200"
                               }`}
                             />
                           ))}
@@ -239,7 +264,9 @@ export default function BookingsPage() {
                         className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-gold-500 px-4 py-2 text-xs font-bold text-navy-800 transition hover:bg-gold-400 sm:flex-none"
                       >
                         <StarIcon className="h-3.5 w-3.5" />
-                        {reviewFor(b.id, myReviews) ? "Edit review" : "Write a review"}
+                        {reviewFor(b.id, myReviews)
+                          ? "Edit review"
+                          : "Write a review"}
                       </button>
                     )}
                   </div>
@@ -272,13 +299,15 @@ export default function BookingsPage() {
 function EmptyState() {
   return (
     <div className="grid place-items-center rounded-2xl border border-dashed border-navy-100 bg-white py-16 text-center">
-      <span className="grid h-14 w-14 place-items-center rounded-2xl bg-navy-50 text-navy-400">
+      <span className="text-navy-400 grid h-14 w-14 place-items-center rounded-2xl bg-navy-50">
         <TicketIcon className="h-7 w-7" />
       </span>
-      <h3 className="mt-4 text-base font-bold text-navy-800">No bookings here</h3>
+      <h3 className="mt-4 text-base font-bold text-navy-800">
+        No bookings here
+      </h3>
       <p className="mt-1 max-w-xs text-sm text-muted">
-        You don&apos;t have any trips in this category yet. Time to plan your next
-        adventure!
+        You don&apos;t have any trips in this category yet. Time to plan your
+        next adventure!
       </p>
       <Link
         href="/"

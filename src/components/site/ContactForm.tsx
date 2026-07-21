@@ -4,11 +4,18 @@ import { useState } from "react";
 import { ArrowRightIcon, CheckIcon } from "../Icons";
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [sent, setSent] = useState(false);
 
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((f) => ({ ...f, [k]: e.target.value }));
+  const set =
+    (k: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +44,13 @@ export default function ContactForm() {
           <label className="mb-1.5 block text-sm font-semibold text-navy-800">
             Full name
           </label>
-          <input required value={form.name} onChange={set("name")} placeholder="John Doe" className={inputClass} />
+          <input
+            required
+            value={form.name}
+            onChange={set("name")}
+            placeholder="John Doe"
+            className={inputClass}
+          />
         </div>
         <div>
           <label className="mb-1.5 block text-sm font-semibold text-navy-800">
@@ -58,7 +71,12 @@ export default function ContactForm() {
         <label className="mb-1.5 block text-sm font-semibold text-navy-800">
           Subject
         </label>
-        <input value={form.subject} onChange={set("subject")} placeholder="How can we help?" className={inputClass} />
+        <input
+          value={form.subject}
+          onChange={set("subject")}
+          placeholder="How can we help?"
+          className={inputClass}
+        />
       </div>
 
       <div className="mt-4">

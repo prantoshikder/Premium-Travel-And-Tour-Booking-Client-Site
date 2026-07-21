@@ -47,7 +47,8 @@ export default function RegisterForm() {
     setErrors(next);
     if (next.name || next.identifier || next.password || next.terms) return;
 
-    const value = mode === "phone" ? normalizePhone(identifier) : identifier.trim();
+    const value =
+      mode === "phone" ? normalizePhone(identifier) : identifier.trim();
     // No backend yet — create the session locally and send them on their way.
     login({ name: name.trim(), contact: value, via: mode });
     const dest = new URLSearchParams(window.location.search).get("next");
@@ -107,24 +108,33 @@ export default function RegisterForm() {
             checked={agreed}
             onChange={(e) => {
               setAgreed(e.target.checked);
-              if (errors.terms) setErrors((prev) => ({ ...prev, terms: undefined }));
+              if (errors.terms)
+                setErrors((prev) => ({ ...prev, terms: undefined }));
             }}
             className="mt-0.5 h-4 w-4 shrink-0 rounded border-navy-200 accent-navy-500"
           />
           <span>
             I agree to the{" "}
-            <Link href="#" className="font-semibold text-navy-600 hover:text-gold-600">
+            <Link
+              href="#"
+              className="font-semibold text-navy-600 hover:text-gold-600"
+            >
               Terms of Service
             </Link>{" "}
             and{" "}
-            <Link href="#" className="font-semibold text-navy-600 hover:text-gold-600">
+            <Link
+              href="#"
+              className="font-semibold text-navy-600 hover:text-gold-600"
+            >
               Privacy Policy
             </Link>
             .
           </span>
         </label>
         {errors.terms && (
-          <p className="mt-1.5 text-xs font-medium text-red-500">{errors.terms}</p>
+          <p className="mt-1.5 text-xs font-medium text-red-500">
+            {errors.terms}
+          </p>
         )}
       </div>
 

@@ -19,9 +19,10 @@ export default function LoginForm() {
   const [mode, setMode] = useState<"email" | "phone">("email");
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState<{ identifier?: string; password?: string }>(
-    {}
-  );
+  const [errors, setErrors] = useState<{
+    identifier?: string;
+    password?: string;
+  }>({});
 
   const toggleMode = () => {
     setMode((m) => (m === "email" ? "phone" : "email"));
@@ -38,7 +39,8 @@ export default function LoginForm() {
     setErrors(next);
     if (next.identifier || next.password) return;
 
-    const value = mode === "phone" ? normalizePhone(identifier) : identifier.trim();
+    const value =
+      mode === "phone" ? normalizePhone(identifier) : identifier.trim();
     // No backend yet — sign the user in locally and send them on their way.
     login({ name: nameFromIdentifier(value, mode), contact: value, via: mode });
     const dest = new URLSearchParams(window.location.search).get("next");

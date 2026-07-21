@@ -29,7 +29,8 @@ export default function UserMenu({ dark = true }: { dark?: boolean }) {
   useEffect(() => {
     if (!open) return;
     const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -50,7 +51,7 @@ export default function UserMenu({ dark = true }: { dark?: boolean }) {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className={`flex items-center gap-2 rounded-full py-1 pl-1 pr-2 transition ${
+        className={`flex items-center gap-2 rounded-full py-1 pr-2 pl-1 transition ${
           dark ? "hover:bg-white/10" : "hover:bg-navy-50"
         }`}
       >
@@ -82,7 +83,9 @@ export default function UserMenu({ dark = true }: { dark?: boolean }) {
         <div className="flex items-center gap-3 border-b border-navy-50 bg-navy-50/40 px-4 py-3.5">
           <Avatar user={user} className="h-11 w-11 text-sm" />
           <div className="min-w-0">
-            <p className="truncate text-sm font-bold text-navy-800">{user.name}</p>
+            <p className="truncate text-sm font-bold text-navy-800">
+              {user.name}
+            </p>
             <p className="truncate text-xs text-muted">{user.contact}</p>
           </div>
         </div>

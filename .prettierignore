@@ -1,0 +1,12 @@
+# Build output and dependencies
+.next
+out
+build
+node_modules
+next-env.d.ts
+
+# Lockfiles and generated assets
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+public/*.svg

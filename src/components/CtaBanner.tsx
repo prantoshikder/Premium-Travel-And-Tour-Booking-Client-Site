@@ -16,7 +16,7 @@ export default function CtaBanner() {
         <div className="absolute inset-0 bg-gradient-to-r from-teal-600 via-teal-600/80 to-transparent" />
 
         <div className="relative max-w-lg">
-          <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+          <h2 className="text-3xl leading-tight font-extrabold text-white sm:text-4xl">
             Ready to Take Off?
           </h2>
           <p className="mt-3 text-base text-white/90">

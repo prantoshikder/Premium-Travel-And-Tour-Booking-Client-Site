@@ -63,7 +63,7 @@ export default function HotelsExplorer() {
                 className="object-cover transition duration-500 group-hover:scale-105"
               />
               {h.tag && (
-                <span className="absolute left-3 top-3 rounded-full bg-gold-500 px-2.5 py-1 text-xs font-bold text-navy-800 shadow">
+                <span className="absolute top-3 left-3 rounded-full bg-gold-500 px-2.5 py-1 text-xs font-bold text-navy-800 shadow">
                   {h.tag}
                 </span>
               )}

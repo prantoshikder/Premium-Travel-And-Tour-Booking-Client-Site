@@ -10,7 +10,6 @@ export const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-
 export const footerColumns = [
   {
     title: "Company",

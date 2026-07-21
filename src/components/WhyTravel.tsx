@@ -36,8 +36,8 @@ export default function WhyTravel() {
 
         {/* Right image collage */}
         <div className="relative">
-          <div className="absolute -right-4 -top-6 h-40 w-40 rounded-full bg-gold-400/40 blur-2xl" />
-          <div className="absolute -left-6 bottom-0 h-32 w-32 rounded-full bg-teal-500/20 blur-2xl" />
+          <div className="absolute -top-6 -right-4 h-40 w-40 rounded-full bg-gold-400/40 blur-2xl" />
+          <div className="absolute bottom-0 -left-6 h-32 w-32 rounded-full bg-teal-500/20 blur-2xl" />
           <div className="relative mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-[2.5rem] rounded-tr-[6rem] shadow-card">
             <Image
               src={whyImage}
@@ -47,7 +47,7 @@ export default function WhyTravel() {
               className="object-cover"
             />
           </div>
-          <span className="absolute right-6 top-8 h-16 w-16 animate-floaty rounded-2xl bg-gold-500/90 shadow-lg" />
+          <span className="animate-floaty absolute top-8 right-6 h-16 w-16 rounded-2xl bg-gold-500/90 shadow-lg" />
         </div>
       </div>
     </section>

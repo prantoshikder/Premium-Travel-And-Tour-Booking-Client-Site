@@ -18,7 +18,9 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
-      <JsonLd data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])} />
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])}
+      />
 
       <PageHero
         eyebrow="We're Here To Help"
@@ -39,7 +41,7 @@ export default function ContactPage() {
                 <Icon name={c.icon} className="h-5 w-5" />
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted">
+                <p className="text-xs font-semibold tracking-wide text-muted uppercase">
                   {c.label}
                 </p>
                 <p className="mt-0.5 text-sm font-semibold text-navy-800">

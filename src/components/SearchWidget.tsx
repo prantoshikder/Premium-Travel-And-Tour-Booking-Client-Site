@@ -43,7 +43,12 @@ const TABS: TabDef[] = [
     cta: "Search Flights",
     modes: ["One Way", "Round Trip", "Multi City"],
     fields: [
-      { name: "from", label: "From", type: "text", placeholder: "New York (NYC)" },
+      {
+        name: "from",
+        label: "From",
+        type: "text",
+        placeholder: "New York (NYC)",
+      },
       { name: "to", label: "To", type: "text", placeholder: "Paris (PAR)" },
       { name: "depart", label: "Depart", type: "date" },
       {
@@ -91,7 +96,15 @@ const TABS: TabDef[] = [
         name: "category",
         label: "Experience",
         type: "select",
-        options: ["Any", "Beach", "Adventure", "Cultural", "Family", "Luxury", "City"],
+        options: [
+          "Any",
+          "Beach",
+          "Adventure",
+          "Cultural",
+          "Family",
+          "Luxury",
+          "City",
+        ],
       },
       { name: "date", label: "Start date", type: "date" },
       { name: "travellers", label: "Travellers", type: "number", min: 1 },
@@ -306,8 +319,8 @@ export default function SearchWidget() {
 
       {tab.id === "flights" && mode === "Multi City" && (
         <p className="px-3 pt-3 text-xs text-muted">
-          Multi-city: search your first leg, then add more flights on the results
-          page.
+          Multi-city: search your first leg, then add more flights on the
+          results page.
         </p>
       )}
     </div>
@@ -332,7 +345,7 @@ function Field({
     <div className="flex flex-col gap-1 px-4 py-3 text-left">
       <label
         htmlFor={id}
-        className="text-[11px] font-semibold uppercase tracking-wide text-muted"
+        className="text-[11px] font-semibold tracking-wide text-muted uppercase"
       >
         {def.label}
       </label>

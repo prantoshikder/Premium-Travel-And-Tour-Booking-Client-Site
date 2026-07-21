@@ -49,7 +49,11 @@ export default function PaymentsPage() {
   const totals = useMemo(() => {
     const sum = (s: PaymentStatus) =>
       payments.filter((p) => p.status === s).reduce((t, p) => t + p.amount, 0);
-    return { paid: sum("paid"), pending: sum("pending"), refunded: sum("refunded") };
+    return {
+      paid: sum("paid"),
+      pending: sum("pending"),
+      refunded: sum("refunded"),
+    };
   }, []);
 
   return (
@@ -99,14 +103,14 @@ export default function PaymentsPage() {
         </div>
 
         <div className="group relative w-full shrink-0 lg:w-64">
-          <SearchIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted transition-colors group-focus-within:text-navy-500" />
+          <SearchIcon className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-muted transition-colors group-focus-within:text-navy-500" />
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search trip, ID or method"
             aria-label="Search payments"
-            className="w-full rounded-full border border-navy-100 bg-white py-2.5 pl-11 pr-4 text-sm font-medium text-navy-800 shadow-soft outline-none transition-all placeholder:font-normal placeholder:text-muted hover:border-navy-200 focus:border-navy-500 focus:ring-4 focus:ring-navy-500/10 [&::-webkit-search-cancel-button]:hidden"
+            className="w-full rounded-full border border-navy-100 bg-white py-2.5 pr-4 pl-11 text-sm font-medium text-navy-800 shadow-soft transition-all outline-none placeholder:font-normal placeholder:text-muted hover:border-navy-200 focus:border-navy-500 focus:ring-4 focus:ring-navy-500/10 [&::-webkit-search-cancel-button]:hidden"
           />
         </div>
       </div>
@@ -118,7 +122,7 @@ export default function PaymentsPage() {
           {/* Desktop table */}
           <div className="hidden overflow-hidden rounded-2xl border border-navy-50 bg-white shadow-soft lg:block">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-navy-50 bg-navy-50/50 text-[11px] uppercase tracking-wider text-muted">
+              <thead className="border-b border-navy-50 bg-navy-50/50 text-[11px] tracking-wider text-muted uppercase">
                 <tr>
                   <th className="px-5 py-3 font-bold">Date</th>
                   <th className="px-5 py-3 font-bold">Description</th>
@@ -131,7 +135,7 @@ export default function PaymentsPage() {
               <tbody className="divide-y divide-navy-50">
                 {list.map((p) => (
                   <tr key={p.id} className="transition hover:bg-navy-50/40">
-                    <td className="whitespace-nowrap px-5 py-4 text-navy-700">
+                    <td className="px-5 py-4 whitespace-nowrap text-navy-700">
                       {formatDate(p.date)}
                     </td>
                     <td className="px-5 py-4">
@@ -151,7 +155,9 @@ export default function PaymentsPage() {
                           {p.badge}
                         </span>
                         <span className="text-navy-700">
-                          <span className="block font-semibold">{p.method}</span>
+                          <span className="block font-semibold">
+                            {p.method}
+                          </span>
                           <span className="block text-xs text-muted">
                             {p.account}
                           </span>
@@ -159,11 +165,15 @@ export default function PaymentsPage() {
                       </span>
                     </td>
                     <td
-                      className={`whitespace-nowrap px-5 py-4 text-right font-extrabold ${
-                        p.status === "refunded" ? "text-navy-400" : "text-navy-800"
+                      className={`px-5 py-4 text-right font-extrabold whitespace-nowrap ${
+                        p.status === "refunded"
+                          ? "text-navy-400"
+                          : "text-navy-800"
                       }`}
                     >
-                      {p.status === "refunded" ? `− ${money(p.amount)}` : money(p.amount)}
+                      {p.status === "refunded"
+                        ? `− ${money(p.amount)}`
+                        : money(p.amount)}
                     </td>
                     <td className="px-5 py-4">
                       <StatusBadge status={p.status} />
@@ -220,10 +230,14 @@ export default function PaymentsPage() {
                   </span>
                   <p
                     className={`shrink-0 text-lg font-extrabold ${
-                      p.status === "refunded" ? "text-navy-400" : "text-navy-800"
+                      p.status === "refunded"
+                        ? "text-navy-400"
+                        : "text-navy-800"
                     }`}
                   >
-                    {p.status === "refunded" ? `− ${money(p.amount)}` : money(p.amount)}
+                    {p.status === "refunded"
+                      ? `− ${money(p.amount)}`
+                      : money(p.amount)}
                   </p>
                 </div>
 
@@ -257,7 +271,9 @@ function Stat({
   };
   return (
     <div className="flex items-center gap-3 rounded-2xl border border-navy-50 bg-white p-4 shadow-soft">
-      <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${tones[tone]}`}>
+      <span
+        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${tones[tone]}`}
+      >
         <ChartIcon className="h-5 w-5" />
       </span>
       <div className="min-w-0">
@@ -281,7 +297,7 @@ function StatusBadge({ status }: { status: PaymentStatus }) {
 function EmptyState() {
   return (
     <div className="grid place-items-center rounded-2xl border border-dashed border-navy-100 bg-white py-16 text-center">
-      <span className="grid h-14 w-14 place-items-center rounded-2xl bg-navy-50 text-navy-400">
+      <span className="text-navy-400 grid h-14 w-14 place-items-center rounded-2xl bg-navy-50">
         <TicketIcon className="h-7 w-7" />
       </span>
       <h3 className="mt-4 text-base font-bold text-navy-800">

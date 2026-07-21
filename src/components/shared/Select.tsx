@@ -157,7 +157,7 @@ export default function Select<T extends string>({
       className={`flex items-center gap-2.5 ${block ? "w-full" : ""} ${className}`}
     >
       {label && (
-        <span className="whitespace-nowrap text-sm font-medium text-muted">
+        <span className="text-sm font-medium whitespace-nowrap text-muted">
           {label}
         </span>
       )}
@@ -217,7 +217,7 @@ export default function Select<T extends string>({
             id={listId}
             role="listbox"
             aria-activedescendant={`${listId}-${activeIndex}`}
-            className={`absolute z-50 mt-2 max-h-72 min-w-full origin-top overflow-y-auto rounded-2xl border border-navy-50 bg-white p-1.5 shadow-[0_20px_60px_-20px_rgba(10,24,54,0.4)] animate-fade-up [animation-duration:180ms] ${
+            className={`animate-fade-up absolute z-50 mt-2 max-h-72 min-w-full origin-top overflow-y-auto rounded-2xl border border-navy-50 bg-white p-1.5 shadow-[0_20px_60px_-20px_rgba(10,24,54,0.4)] [animation-duration:180ms] ${
               align === "right" ? "right-0" : "left-0"
             } ${block ? "w-full" : "w-max max-w-[min(20rem,90vw)]"}`}
           >

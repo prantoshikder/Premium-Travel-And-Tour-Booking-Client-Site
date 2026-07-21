@@ -7,7 +7,8 @@ import LoginForm from "@/components/auth/LoginForm";
 
 export const metadata: Metadata = pageMetadata({
   title: "Sign In",
-  description: "Sign in to your TravelPerk account to manage bookings and unlock exclusive deals.",
+  description:
+    "Sign in to your TravelPerk account to manage bookings and unlock exclusive deals.",
   path: "/login",
   noIndex: true,
 });

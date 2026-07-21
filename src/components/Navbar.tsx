@@ -36,7 +36,7 @@ export default function Navbar() {
       data-navbar
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-navy-800/95 backdrop-blur-md shadow-lg py-3"
+          ? "bg-navy-800/95 py-3 shadow-lg backdrop-blur-md"
           : "bg-transparent py-5"
       }`}
     >
@@ -193,7 +193,7 @@ export default function Navbar() {
           {/* Account section — same items as the desktop avatar dropdown */}
           {user && (
             <>
-              <p className="mt-5 mb-1 px-4 text-[11px] font-bold uppercase tracking-wider text-white/40">
+              <p className="mt-5 mb-1 px-4 text-[11px] font-bold tracking-wider text-white/40 uppercase">
                 Account
               </p>
               <ul className="flex flex-col gap-1">

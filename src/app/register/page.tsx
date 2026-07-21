@@ -7,7 +7,8 @@ import RegisterForm from "@/components/auth/RegisterForm";
 
 export const metadata: Metadata = pageMetadata({
   title: "Create Account",
-  description: "Create your free TravelPerk account and start booking trips with exclusive deals.",
+  description:
+    "Create your free TravelPerk account and start booking trips with exclusive deals.",
   path: "/register",
   noIndex: true,
 });

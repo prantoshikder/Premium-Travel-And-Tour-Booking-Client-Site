@@ -17,8 +17,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-r from-navy-900/70 to-transparent" />
 
         <div className="container-x relative pt-32 pb-44 sm:pt-44 sm:pb-52">
-          <div className="max-w-xl animate-fade-up">
-            <h1 className="text-[2rem] font-extrabold leading-[1.08] tracking-tight text-white min-[400px]:text-4xl sm:text-6xl">
+          <div className="animate-fade-up max-w-xl">
+            <h1 className="text-[2rem] leading-[1.08] font-extrabold tracking-tight text-white min-[400px]:text-4xl sm:text-6xl">
               Explore More,
               <br />
               <span className="text-gold-400">Travel</span> Better

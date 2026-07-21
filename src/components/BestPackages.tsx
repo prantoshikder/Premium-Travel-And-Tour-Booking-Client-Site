@@ -34,7 +34,7 @@ export default function BestPackages() {
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition duration-500 group-hover:scale-105"
               />
-              <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-sm font-extrabold text-navy-800 shadow">
+              <span className="absolute top-3 left-3 rounded-full bg-white/95 px-3 py-1 text-sm font-extrabold text-navy-800 shadow">
                 ${p.price}
               </span>
             </div>

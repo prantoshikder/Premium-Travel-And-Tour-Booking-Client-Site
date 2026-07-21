@@ -6,7 +6,13 @@ import JsonLd from "@/components/JsonLd";
 import Rating from "@/components/site/Rating";
 import FaqSection from "@/components/site/FaqSection";
 import BookNowButton from "@/components/site/BookNowButton";
-import { ClockIcon, PinIcon, UsersIcon, ShieldIcon, CheckIcon } from "@/components/Icons";
+import {
+  ClockIcon,
+  PinIcon,
+  UsersIcon,
+  ShieldIcon,
+  CheckIcon,
+} from "@/components/Icons";
 import { absoluteUrl, breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { tourBySlug, tourList, tourSlug, tourSlugs } from "@/temp/tours";
 import { tourFaqs } from "@/temp/faq";
@@ -21,7 +27,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const tour = tourBySlug(slug);
-  if (!tour) return pageMetadata({ title: "Tour not found", description: "", path: `/tours/${slug}`, noIndex: true });
+  if (!tour)
+    return pageMetadata({
+      title: "Tour not found",
+      description: "",
+      path: `/tours/${slug}`,
+      noIndex: true,
+    });
 
   return pageMetadata({
     title: `${tour.title} — ${tour.duration} in ${tour.location}`,
@@ -114,7 +126,7 @@ export default async function TourDetailPage({ params }: Params) {
             <span className="text-white/90">{tour.title}</span>
           </nav>
 
-          <p className="text-xs font-bold uppercase tracking-[0.08em] text-gold-400">
+          <p className="text-xs font-bold tracking-[0.08em] text-gold-400 uppercase">
             {tour.category} tour
           </p>
           <h1 className="mt-2 max-w-3xl text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
@@ -153,9 +165,10 @@ export default async function TourDetailPage({ params }: Params) {
             </p>
             <p className="mt-3 text-sm leading-relaxed text-navy-700">
               Prices start at ${tour.price.toLocaleString()} per person and
-              include stays, transfers and guided sightseeing. Dates are flexible
-              year-round, and every booking comes with free cancellation for the
-              first 24 hours plus round-the-clock support while you travel.
+              include stays, transfers and guided sightseeing. Dates are
+              flexible year-round, and every booking comes with free
+              cancellation for the first 24 hours plus round-the-clock support
+              while you travel.
             </p>
           </div>
 
@@ -196,7 +209,9 @@ export default async function TourDetailPage({ params }: Params) {
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="text-sm font-bold text-navy-800">{r.title}</h3>
+                      <h3 className="text-sm font-bold text-navy-800">
+                        {r.title}
+                      </h3>
                       <p className="mt-0.5 text-xs text-muted">
                         {r.duration} · from ${r.price.toLocaleString()}
                       </p>
@@ -213,7 +228,9 @@ export default async function TourDetailPage({ params }: Params) {
           <p className="text-sm text-muted">from</p>
           <p className="text-3xl font-extrabold text-navy-800">
             ${tour.price.toLocaleString()}
-            <span className="ml-1 text-sm font-medium text-muted">/ person</span>
+            <span className="ml-1 text-sm font-medium text-muted">
+              / person
+            </span>
           </p>
 
           <dl className="mt-4 space-y-2 border-t border-navy-50 pt-4 text-sm">

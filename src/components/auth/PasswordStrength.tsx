@@ -2,8 +2,20 @@
 
 import { passwordStrength } from "@/lib/validation";
 
-const colors = ["bg-navy-100", "bg-red-400", "bg-gold-500", "bg-teal-500", "bg-teal-600"];
-const textColors = ["text-muted", "text-red-500", "text-gold-600", "text-teal-600", "text-teal-700"];
+const colors = [
+  "bg-navy-100",
+  "bg-red-400",
+  "bg-gold-500",
+  "bg-teal-500",
+  "bg-teal-600",
+];
+const textColors = [
+  "text-muted",
+  "text-red-500",
+  "text-gold-600",
+  "text-teal-600",
+  "text-teal-700",
+];
 
 export default function PasswordStrength({ value }: { value: string }) {
   if (!value) return null;

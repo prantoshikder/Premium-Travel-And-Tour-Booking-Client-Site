@@ -25,10 +25,8 @@ export const heroFeatures = [
   },
 ];
 
-
 /** Moved to ./destinations — re-exported so older imports keep working. */
 export { destinations } from "./destinations";
-
 
 export const tourCategories = [
   {
@@ -63,7 +61,6 @@ export const tourCategories = [
   },
 ];
 
-
 export const deals = [
   {
     title: "Maldives Escape",
@@ -91,14 +88,12 @@ export const deals = [
   },
 ];
 
-
 export const heroStats = [
   { value: "500K+", label: "Happy Travelers", icon: "users" },
   { value: "150+", label: "Top Destinations", icon: "pin" },
   { value: "24/7", label: "Support", icon: "headset" },
   { value: "100%", label: "Secure Booking", icon: "shield" },
 ];
-
 
 export const packages = [
   {
@@ -121,14 +116,12 @@ export const packages = [
   },
 ];
 
-
 export const experienceStats = [
   { value: "10+", label: "Years of Experience", icon: "chart" },
   { value: "1M+", label: "Trips Booked", icon: "ticket" },
   { value: "200+", label: "Travel Experts", icon: "team" },
   { value: "24/7", label: "Assistance", icon: "clock" },
 ];
-
 
 export const whyFeatures = [
   {
@@ -153,31 +146,32 @@ export const whyFeatures = [
   },
 ];
 
-
 export const testimonials = [
   {
     name: "Sarah Johnson",
     country: "United States",
     text: "The trip to Bali was amazing! Everything was perfectly organized and stress-free.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80",
     rating: 5,
   },
   {
     name: "Michael Brown",
     country: "Canada",
     text: "Excellent service and great prices. I will definitely book again!",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80",
     rating: 5,
   },
   {
     name: "Emma Davis",
     country: "Australia",
     text: "Our family trip to Europe was unforgettable. Highly recommended!",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&h=100&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&h=100&q=80",
     rating: 5,
   },
 ];
-
 
 export const blogPosts = [
   {
@@ -197,9 +191,7 @@ export const blogPosts = [
   },
 ];
 
-
 /** First frame of public/hero.webm, so the still and the clip match. */
 export const heroImage = "/hero-poster.jpg";
-
 
 export const whyImage = img("1502920917128-1aa500764cbd", 700, 800);

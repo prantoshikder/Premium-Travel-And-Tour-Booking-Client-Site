@@ -158,7 +158,11 @@ function ReviewForm({
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-1 flex-col" noValidate>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-1 flex-col"
+          noValidate
+        >
           <div className="flex-1 space-y-6 overflow-y-auto p-6">
             {/* Rating */}
             <div>
@@ -223,7 +227,7 @@ function ReviewForm({
                   setErrors((p) => ({ ...p, title: "" }));
                 }}
                 aria-invalid={!!errors.title}
-                className={`w-full rounded-xl border bg-white px-4 py-2.5 text-sm text-navy-800 outline-none transition placeholder:text-muted/60 focus:ring-4 ${
+                className={`w-full rounded-xl border bg-white px-4 py-2.5 text-sm text-navy-800 transition outline-none placeholder:text-muted/60 focus:ring-4 ${
                   errors.title
                     ? "border-red-400 focus:border-red-500 focus:ring-red-500/10"
                     : "border-navy-100 focus:border-navy-500 focus:ring-navy-500/10"
@@ -256,7 +260,7 @@ function ReviewForm({
                   setErrors((p) => ({ ...p, text: "" }));
                 }}
                 aria-invalid={!!errors.text}
-                className={`w-full resize-none rounded-xl border bg-white px-4 py-2.5 text-sm text-navy-800 outline-none transition placeholder:text-muted/60 focus:ring-4 ${
+                className={`w-full resize-none rounded-xl border bg-white px-4 py-2.5 text-sm text-navy-800 transition outline-none placeholder:text-muted/60 focus:ring-4 ${
                   errors.text
                     ? "border-red-400 focus:border-red-500 focus:ring-red-500/10"
                     : "border-navy-100 focus:border-navy-500 focus:ring-navy-500/10"
@@ -289,8 +293,9 @@ function ReviewForm({
             </label>
 
             <p className="rounded-xl bg-navy-50/60 px-4 py-3 text-[11px] text-muted">
-              Reviews are tied to this booking, so other travellers know they are
-              genuine. Your name and country are shown; contact details never are.
+              Reviews are tied to this booking, so other travellers know they
+              are genuine. Your name and country are shown; contact details
+              never are.
             </p>
           </div>
 

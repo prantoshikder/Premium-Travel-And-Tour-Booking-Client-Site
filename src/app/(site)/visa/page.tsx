@@ -13,7 +13,12 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Fast, hassle-free visa assistance for popular destinations. Transparent pricing and expert support.",
   path: "/visa",
-  keywords: ["visa assistance", "tourist visa", "visa processing", "travel visa"],
+  keywords: [
+    "visa assistance",
+    "tourist visa",
+    "visa processing",
+    "travel visa",
+  ],
 });
 
 export default function VisaPage() {
@@ -46,14 +51,18 @@ export default function VisaPage() {
               key={s.title}
               className="relative rounded-2xl border border-navy-50 bg-white p-6 shadow-soft"
             >
-              <span className="absolute right-5 top-4 text-4xl font-extrabold text-navy-50">
+              <span className="absolute top-4 right-5 text-4xl font-extrabold text-navy-50">
                 {i + 1}
               </span>
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy-500/10 text-navy-500">
                 <Icon name={s.icon} className="h-6 w-6" />
               </span>
-              <h3 className="mt-4 text-sm font-bold text-navy-800">{s.title}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-muted">{s.text}</p>
+              <h3 className="mt-4 text-sm font-bold text-navy-800">
+                {s.title}
+              </h3>
+              <p className="mt-1 text-xs leading-relaxed text-muted">
+                {s.text}
+              </p>
             </div>
           ))}
         </div>
@@ -78,7 +87,9 @@ export default function VisaPage() {
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">{c.flag}</span>
                   <div>
-                    <h3 className="text-sm font-bold text-navy-800">{c.country}</h3>
+                    <h3 className="text-sm font-bold text-navy-800">
+                      {c.country}
+                    </h3>
                     <p className="text-xs text-muted">{c.type}</p>
                   </div>
                 </div>

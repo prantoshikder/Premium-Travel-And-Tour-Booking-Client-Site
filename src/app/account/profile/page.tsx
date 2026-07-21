@@ -29,7 +29,7 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-navy-100 bg-navy-50/40 px-4 py-2.5 text-sm text-navy-800 outline-none transition placeholder:text-muted/70 focus:border-navy-500 focus:bg-white focus:ring-4 focus:ring-navy-500/10"
+        className="w-full rounded-xl border border-navy-100 bg-navy-50/40 px-4 py-2.5 text-sm text-navy-800 transition outline-none placeholder:text-muted/70 focus:border-navy-500 focus:bg-white focus:ring-4 focus:ring-navy-500/10"
       />
     </div>
   );
@@ -79,7 +79,7 @@ export default function ProfilePage() {
             <button
               type="button"
               aria-label="Change photo"
-              className="absolute -bottom-1 -right-1 grid h-8 w-8 place-items-center rounded-full border-2 border-white bg-navy-500 text-white transition hover:bg-navy-600"
+              className="absolute -right-1 -bottom-1 grid h-8 w-8 place-items-center rounded-full border-2 border-white bg-navy-500 text-white transition hover:bg-navy-600"
             >
               <CameraIcon className="h-4 w-4" />
             </button>
@@ -142,7 +142,7 @@ export default function ProfilePage() {
             onChange={(e) => setBio(e.target.value)}
             rows={3}
             placeholder="Tell us a little about your travel style…"
-            className="w-full resize-none rounded-xl border border-navy-100 bg-navy-50/40 px-4 py-2.5 text-sm text-navy-800 outline-none transition placeholder:text-muted/70 focus:border-navy-500 focus:bg-white focus:ring-4 focus:ring-navy-500/10"
+            className="w-full resize-none rounded-xl border border-navy-100 bg-navy-50/40 px-4 py-2.5 text-sm text-navy-800 transition outline-none placeholder:text-muted/70 focus:border-navy-500 focus:bg-white focus:ring-4 focus:ring-navy-500/10"
           />
         </div>
 

@@ -13,7 +13,13 @@ export default function Avatar({
       <span
         className={`relative overflow-hidden rounded-full ring-2 ring-gold-400/50 ${className}`}
       >
-        <Image src={user.avatar} alt={user.name} fill sizes="40px" className="object-cover" />
+        <Image
+          src={user.avatar}
+          alt={user.name}
+          fill
+          sizes="40px"
+          className="object-cover"
+        />
       </span>
     );
   }

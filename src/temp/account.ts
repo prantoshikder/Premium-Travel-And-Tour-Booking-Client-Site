@@ -4,7 +4,6 @@ import { img } from "./image";
 
 export type BookingStatus = "upcoming" | "completed" | "cancelled";
 
-
 export const bookings: {
   id: string;
   title: string;
@@ -67,9 +66,7 @@ export const bookings: {
   },
 ];
 
-
 export type PaymentStatus = "paid" | "pending" | "refunded" | "failed";
-
 
 export const payments: {
   id: string;

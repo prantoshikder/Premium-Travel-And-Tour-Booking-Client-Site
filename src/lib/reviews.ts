@@ -25,7 +25,9 @@ export function loadReviews(): MyReview[] {
 
 export function saveReview(review: MyReview) {
   try {
-    const others = loadReviews().filter((r) => r.bookingId !== review.bookingId);
+    const others = loadReviews().filter(
+      (r) => r.bookingId !== review.bookingId
+    );
     localStorage.setItem(STORAGE_KEY, JSON.stringify([review, ...others]));
   } catch {
     // ignore storage failures (private mode, etc.)

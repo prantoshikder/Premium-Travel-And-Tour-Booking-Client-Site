@@ -6,7 +6,7 @@ export default function Newsletter() {
       <div className="relative overflow-hidden rounded-3xl bg-navy-800 px-6 py-10 sm:px-12 sm:py-12">
         {/* dashed flight path decoration */}
         <svg
-          className="pointer-events-none absolute right-6 top-6 hidden h-40 w-80 text-white/20 lg:block"
+          className="pointer-events-none absolute top-6 right-6 hidden h-40 w-80 text-white/20 lg:block"
           viewBox="0 0 320 160"
           fill="none"
         >
@@ -17,11 +17,14 @@ export default function Newsletter() {
             strokeDasharray="6 8"
           />
         </svg>
-        <PlaneIcon className="pointer-events-none absolute right-10 top-4 hidden h-10 w-10 text-gold-400 lg:block" strokeWidth={2} />
+        <PlaneIcon
+          className="pointer-events-none absolute top-4 right-10 hidden h-10 w-10 text-gold-400 lg:block"
+          strokeWidth={2}
+        />
 
         <div className="relative flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
           <div className="max-w-md">
-            <h2 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
+            <h2 className="text-2xl leading-tight font-extrabold text-white sm:text-3xl">
               Get Exclusive Travel Deals Straight to Your Inbox
             </h2>
             <p className="mt-2 text-sm text-white/70">

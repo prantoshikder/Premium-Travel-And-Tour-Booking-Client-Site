@@ -13,13 +13,34 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Browse curated tour packages worldwide — beach escapes, adventures, cultural trips, luxury getaways and more.",
   path: "/tours",
-  keywords: ["tour packages", "holiday packages", "guided tours", "beach holidays", "adventure travel"],
+  keywords: [
+    "tour packages",
+    "holiday packages",
+    "guided tours",
+    "beach holidays",
+    "adventure travel",
+  ],
 });
 
 export default function ToursPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Tours", path: "/tours" }]), itemListSchema("Tour packages", tourList.map((t) => ({ name: t.title, url: "/tours", image: t.image, price: t.price, rating: t.rating, reviews: t.reviews })))]} />
+      <JsonLd
+        data={[
+          breadcrumbSchema([{ name: "Tours", path: "/tours" }]),
+          itemListSchema(
+            "Tour packages",
+            tourList.map((t) => ({
+              name: t.title,
+              url: "/tours",
+              image: t.image,
+              price: t.price,
+              rating: t.rating,
+              reviews: t.reviews,
+            }))
+          ),
+        ]}
+      />
 
       <PageHero
         eyebrow="Discover by Experience"

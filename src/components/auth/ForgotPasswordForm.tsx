@@ -30,7 +30,8 @@ export default function ForgotPasswordForm() {
   };
 
   const sendCode = () => {
-    const value = mode === "phone" ? normalizePhone(identifier) : identifier.trim();
+    const value =
+      mode === "phone" ? normalizePhone(identifier) : identifier.trim();
     // No backend yet — a real app would request an OTP / reset link here.
     console.log("Send reset code to", { via: mode, value });
     setSent(true);
@@ -52,7 +53,9 @@ export default function ForgotPasswordForm() {
         <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-navy-500/10 text-navy-500">
           <Icon className="h-7 w-7" />
         </span>
-        <h3 className="mt-4 text-lg font-bold text-navy-800">Check your {mode}</h3>
+        <h3 className="mt-4 text-lg font-bold text-navy-800">
+          Check your {mode}
+        </h3>
         <p className="mt-1.5 text-sm text-muted">
           We sent a 6-digit reset code to{" "}
           <span className="font-semibold text-navy-700">

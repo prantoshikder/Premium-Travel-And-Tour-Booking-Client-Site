@@ -29,7 +29,7 @@ export default function Blog() {
             </div>
             <div className="p-5">
               <p className="text-xs font-medium text-navy-500">{post.date}</p>
-              <h3 className="mt-2 text-base font-bold leading-snug text-navy-800">
+              <h3 className="mt-2 text-base leading-snug font-bold text-navy-800">
                 {post.title}
               </h3>
               <a

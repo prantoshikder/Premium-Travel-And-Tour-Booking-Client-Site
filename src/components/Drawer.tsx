@@ -84,9 +84,7 @@ export default function Drawer({
 
   return createPortal(
     <div
-      className={`fixed inset-0 z-100 ${
-        open ? "" : "pointer-events-none"
-      }`}
+      className={`fixed inset-0 z-100 ${open ? "" : "pointer-events-none"}`}
       aria-hidden={!open}
     >
       {/* Backdrop */}

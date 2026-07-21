@@ -13,11 +13,7 @@ export default function SectionHeading({
 }) {
   return (
     <div className={`${center ? "mx-auto max-w-2xl text-center" : "max-w-xl"}`}>
-      <p
-        className={`eyebrow ${light ? "!text-gold-400" : ""}`}
-      >
-        {eyebrow}
-      </p>
+      <p className={`eyebrow ${light ? "!text-gold-400" : ""}`}>{eyebrow}</p>
       <h2
         className={`mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl ${
           light ? "text-white" : "text-navy-800"

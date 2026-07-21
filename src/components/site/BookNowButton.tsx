@@ -4,7 +4,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { packageBooking, saveBooking } from "@/lib/booking";
-import PackageBookingDrawer, { type PackageDetails } from "./PackageBookingDrawer";
+import PackageBookingDrawer, {
+  type PackageDetails,
+} from "./PackageBookingDrawer";
 
 type Props = {
   reference: string;

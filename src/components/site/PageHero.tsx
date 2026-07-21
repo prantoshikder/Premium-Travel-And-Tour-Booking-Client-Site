@@ -38,10 +38,10 @@ export default function PageHero({
           <span className="text-white/90">{title}</span>
         </nav>
 
-        <p className="text-xs font-bold uppercase tracking-[0.08em] text-gold-400">
+        <p className="text-xs font-bold tracking-[0.08em] text-gold-400 uppercase">
           {eyebrow}
         </p>
-        <h1 className="mt-2 max-w-2xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+        <h1 className="mt-2 max-w-2xl text-3xl leading-tight font-extrabold tracking-tight text-white sm:text-5xl">
           {title}
         </h1>
         {subtitle && (

@@ -22,7 +22,7 @@ export default function WishlistPage() {
 
       {items.length === 0 ? (
         <div className="grid place-items-center rounded-2xl border border-dashed border-navy-100 bg-white py-16 text-center">
-          <span className="grid h-14 w-14 place-items-center rounded-2xl bg-navy-50 text-navy-400">
+          <span className="text-navy-400 grid h-14 w-14 place-items-center rounded-2xl bg-navy-50">
             <HeartIcon className="h-7 w-7" />
           </span>
           <h3 className="mt-4 text-base font-bold text-navy-800">
@@ -56,14 +56,20 @@ export default function WishlistPage() {
                 <button
                   onClick={() => remove(d.name)}
                   aria-label={`Remove ${d.name} from wishlist`}
-                  className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-red-500 shadow transition hover:bg-white"
+                  className="absolute top-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-red-500 shadow transition hover:bg-white"
                 >
-                  <HeartIcon className="h-5 w-5" fill="currentColor" stroke="none" />
+                  <HeartIcon
+                    className="h-5 w-5"
+                    fill="currentColor"
+                    stroke="none"
+                  />
                 </button>
               </div>
               <div className="flex items-center justify-between p-4">
                 <div>
-                  <h3 className="text-base font-bold text-navy-800">{d.name}</h3>
+                  <h3 className="text-base font-bold text-navy-800">
+                    {d.name}
+                  </h3>
                   <p className="mt-0.5 flex items-center gap-1 text-xs text-muted">
                     <PinIcon className="h-3.5 w-3.5" />
                     {d.country}

@@ -61,9 +61,13 @@ export function pageMetadata({
   type = "website",
 }: PageMetaInput): Metadata {
   const url = absoluteUrl(path);
-  const images = [{ url: image ?? site.ogImage, width: 1200, height: 630, alt: title }];
+  const images = [
+    { url: image ?? site.ogImage, width: 1200, height: 630, alt: title },
+  ];
   // Titles that already carry the brand (the home page) shouldn't get it twice.
-  const socialTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+  const socialTitle = title.includes(site.name)
+    ? title
+    : `${title} | ${site.name}`;
 
   return {
     title,
